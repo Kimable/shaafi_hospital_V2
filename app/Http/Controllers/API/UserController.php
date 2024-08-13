@@ -52,15 +52,25 @@ class UserController extends Controller
             $user = User::where('email', $request->email)->first();
             $token = $user->createToken('user-token');
             return response()->json(['successMsg' => 'You have successfully logged in!', 'token' => $token->plainTextToken], 200);
+        } else {
+            return response()->json(["errorMsg" => "Invalid credentials"], 401);
         }
-
-        return response()->json(["errorMsg" => "Invalid credentials"], 401);
     }
 
     function profile()
     {
-        $user = Auth::user();
-        return response()->json(['user' => $user], 200);
+        try {
+
+            $user = Auth::guard('sanctum')->user();
+            if ($user) {
+                return response()->json(['successMsg' => 'Logged in successfully', 'user' => $user]);
+            } else {
+                return response()->json(['message' => 'Invalid token'], 401);
+            }
+        } catch (\Exception $e) {
+            // Handle any exceptions, e.g., if the token is malformed
+            return response()->json(['message' => 'Error validating token'], 500);
+        }
     }
 
     public function updateProfile(Request $request)

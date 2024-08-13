@@ -26,7 +26,7 @@
               <tr>
                 <th>{{ $message->name }}</th>
                 <td>{{ $message->email }}</td>
-                <td>{{ $message->msgTitle }}</td>
+                <td>{{ $message->message_title }}</td>
                 <td><a href="/admin/message/{{ $message->id }}" class="btn btn-tertiary">Read Message</a></td>
               </tr>
             @endforeach

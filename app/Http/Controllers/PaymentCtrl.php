@@ -6,8 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
-use KingFlamez\Rave\Facades\Rave as Flutterwave;
+use Illuminate\Support\Facades\Http;
 
 class PaymentCtrl extends Controller
 {
@@ -22,109 +21,65 @@ class PaymentCtrl extends Controller
 
     }
     /**
-     * Initialize Rave payment process
+     * Start payment process
      */
-    public function initialize(Request $request)
+    public function pay(Request $request)
     {
-        //This generates a payment reference
-        $reference = Flutterwave::generateReference();
-
-        if (!Auth::check()) {
-            $data = [
-                'payment_options' => 'card,banktransfer,account,credit,mpesa',
-                'amount' => intval($request->input('amount')),
-                'email' => $request->input('email'),
-                'tx_ref' => $reference,
-                'currency' => "USD",
-                'redirect_url' => route('callback'),
-                'customer' => [
-                    'email' => $request->input('email'),
-                    "phone_number" => $request->input('phone'),
-                    "name" => $request->input('name'),
+        $response = Http::post('https://api.waafipay.net/asm', [
+            'schemaVersion' => "1.0",
+            'requestId' => random_int(10000000, 99999999),
+            'timestamp' => "2024-01-24 Africa",
+            'channelName' => "WEB",
+            'serviceName' => "API_PREAUTHORIZE",
+            'serviceParams' => [
+                'merchantUid' => "M0913541",
+                'apiUserId' => "1007191",
+                'apiKey' => "API-908053044AHX",
+                'paymentMethod' => "MWALLET_ACCOUNT",
+                'payerInfo' => [
+                    'accountNo' => $request->input('phone')
                 ],
-
-                "customizations" => [
-                    "title" => 'Medical Fee',
-                    "description" => "Medical Fee to Shaafi Hospital"
+                'transactionInfo' => [
+                    'referenceId' => "REF-" . random_int(100000, 999999),
+                    'invoiceId' => "INV-" . random_int(100000, 999999),
+                    'amount' => $request->input('amount'),
+                    'currency' => "USD",
+                    'description' => "wan diray",
+                    'paymentBrand' => "WAAFI / ZAAD / SAHAL / EVCPLUS / VISA/MASTERCARD",
+                    'transactionCategory' => "ECOMMERCE / AIRLINE/ APPOINTMENTS "
                 ]
-            ];
-            $payment = Flutterwave::initializePayment($data);
-        } else {
-            $user = Auth::user();
-            // Enter the details of the payment
-            $data = [
-                'payment_options' => 'card,banktransfer,account,credit,mpesa',
-                'amount' => intval($request->input('amount')),
-                'email' => $user->email,
-                'tx_ref' => $reference,
-                'currency' => "USD",
-                'redirect_url' => route('callback'),
-                'customer' => [
-                    'email' => $user->email,
-                    "phone_number" => $user->phone,
-                    "name" => "$user->first_name $user->last_name"
-                ],
+            ]
+        ]);
 
-                "customizations" => [
-                    "title" => 'Medical Fee',
-                    "description" => "Medical Fee to Shaafi Hospital"
+        // Get the response body as an array
+        $data = $response->json();
+
+        if ($data['errorCode'] == "0") {
+            // Commit Transaction
+            $commitResponse = Http::post('https://api.waafipay.net/asm', [
+                'schemaVersion' => "1.0",
+                'requestId' => random_int(10000000, 99999999),
+                'timestamp' => "2024-01-24 Africa",
+                'channelName' => "WEB",
+                'serviceName' => "API_PREAUTHORIZE_COMMIT",
+                'serviceParams' => [
+                    'merchantUid' => "M0913541",
+                    'apiUserId' => "1007191",
+                    'apiKey' => "API-908053044AHX",
+                    'paymentMethod' => "MWALLET_ACCOUNT",
+                    'transactionId' => $data['params']['transactionId'],
+                    'description' => "Committed",
+                    'referenceId' => $data['params']['referenceId']
                 ]
-            ];
-            $payment = Flutterwave::initializePayment($data);
-
-        }
-
-        if ($payment['status'] !== 'success') {
-            // notify something went wrong
-            return;
-        }
-
-        return redirect($payment['data']['link']);
-    }
-
-    /**
-     * Obtain Rave callback information
-     * 
-     */
-    public function callback(Request $request)
-    {
-
-        $status = $request->input('status');
-        $transactionExists = Payment::where('transaction_ref', $request->input('tx_ref'))->exists();
-        if ($transactionExists) {
-            return redirect('/payment');
-        }
-        //if payment is successful
-        if ($status == 'successful') {
-
-            $transactionID = Flutterwave::getTransactionIDFromCallback();
-            $data = Flutterwave::verifyTransaction($transactionID);
-
-            $user = Auth::user();
-
-
-
-            $paid = new Payment();
-            $paid->transaction_ref = $data['data']['tx_ref'];
-            $paid->transaction_status = $data['status'];
-            $paid->amount = $data['data']['amount'];
-            $paid->user_id = $user->id;
-            $paid->save();
-
-
-            return view('user/payment-success', ['data' => $data]);
+            ]);
+            $commitData = $commitResponse->json();
+            if ($commitData['errorCode'] != "0") {
+                dd($commitData);
+            } else {
+                return view('user/payment-success');
+            }
         } else {
-            //Put desired action/code after transaction has failed here
-            return view('user/payment-failed');
+            dd($data);
         }
-        // Get the transaction from your DB using the transaction reference (txref)
-        // Check if you have previously given value for the transaction. If you have, redirect to your successpage else, continue
-        // Confirm that the currency on your db transaction is equal to the returned currency
-        // Confirm that the db transaction amount is equal to the returned amount
-        // Update the db transaction record (including parameters that didn't exist before the transaction is completed. for audit purpose)
-        // Give value for the transaction
-        // Update the transaction to note that you have given value for the transaction
-        // You can also redirect to your success page from here
-
     }
 }

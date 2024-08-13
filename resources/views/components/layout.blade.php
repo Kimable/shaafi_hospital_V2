@@ -121,7 +121,7 @@
                                 <a
                                     class="nav-link"
                                     aria-current="page"
-                                    href="/doctor-dashboard"
+                                    href="/dashboard"
                                     >Dashboard</a
                                 >
                             </li>

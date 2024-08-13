@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AppointmentsController;
+use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\App;
 
@@ -76,16 +77,6 @@ Route::get('admin/message/{id}', [ContactFormController::class, 'viewMessage'])-
 // Route::post('/talk', [UserController::class, 'talkToDoctor'])->name('talk.post');
 
 // Doctor Auth Routes
-Route::get('doctor', function () {
-    if (!Auth::guard('doctor')->check()) {
-        return redirect('doctor-login');
-    } else {
-        return redirect('doctor-dashboard');
-    }
-});
-Route::get('doctor-login', [DoctorController::class, 'doctorLoginForm'])->name('doctor-login');
-Route::post('doctor-login', [DoctorController::class, 'doctorLogin'])->name('doctor-login.post');
-Route::get('doctor-dashboard', [DoctorController::class, 'doctorDashboard'])->name('doctor-dashboard');
 Route::get('doctor-profile', [DoctorController::class, 'doctorProfile'])->name('doctor-profile');
 Route::get('update-doctor-profile/{id}', [DoctorController::class, 'showUpdateDoctorProfile'])->name('update-doctor-profile/{id}');
 Route::put('update-doctor-profile/{id}', [DoctorController::class, 'updateDoctorProfile'])->name('update-doctor-profile.post');
@@ -153,12 +144,25 @@ Route::post('/search', [SearchController::class, 'search'])->name('search.search
 
 // Payment endpoints
 Route::get('/payment', [PaymentCtrl::class, 'paymentForm'])->name('payment');
-Route::post('/payment', [PaymentCtrl::class, 'initialize'])->name('payment.post');
+Route::post('/payment', [PaymentCtrl::class, 'pay'])->name('payment.post');
 Route::get('callback', [PaymentCtrl::class, 'callback'])->name('callback');
 
 Route::get('/payment-success', function () {
     return view('user/payment-success');
 });
+
+// Delete Account form
+Route::get('delete-account', function () {
+    return view('delete-account');
+});
+// Send Delete Account Email
+Route::post('delete-account', [MailController::class, 'deleteAccount'])->name('delete-account');
+
+// Delete Account
+Route::get('delete', function () {
+    return view('delete');
+})->name('delete');
+Route::post('deleteUser/{email}', [UserController::class, 'deleteAccount'])->name('deleteUser/{email}');
 
 // Appointment Completed
 Route::post('appointment-completed/{id}', function ($id) {
@@ -182,11 +186,21 @@ Route::post('delete-appointment/{id}', function ($id) {
 })->name('delete-appointment');
 
 
+// User account deleted successfully
+Route::get('/delete-success', function () {
+    return view('/delete_success');
+});
+
 // Logout users
 Route::get('/logout', function () {
     Auth::logout();
     return redirect('/login');
 })->name('/logout');
+
+Route::get('/auth-fail', function () {
+    return response()->json(['message' => 'Invalid token'], 401);
+})->name('/auth-fail');
+
 
 
 Route::fallback(function () {

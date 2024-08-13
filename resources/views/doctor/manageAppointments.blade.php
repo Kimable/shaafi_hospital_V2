@@ -21,12 +21,16 @@
           </thead>
 
           @foreach ($appointments as $appointment)
-            <tr>
-              <th>{{ $appointment->full_name }}</th>
-              <td>{{ $appointment->email }}</td>
-              <td>{{ $appointment->inquiry }}</td>
-              <td><a href="/doctors/appointment/{{ $appointment->id }}" class="btn btn-tertiary">View Appointment</a></td>
-            </tr>
+            @foreach($users as $user)
+              @if ($user->id == $appointment->user_id)
+                <tr>
+                  <th>{{ $user->first_name }} {{ $user->last_name }}</th>
+                  <td>{{ $user->email }}</td>
+                  <td>{{ $appointment->medical_issue }}</td>
+                  <td><a href="/doctors/appointment/{{ $appointment->id }}" class="btn btn-tertiary">View Appointment</a></td>
+                </tr>
+              @endif
+            @endforeach
           @endforeach
         </table>
       </div>

@@ -22,3 +22,6 @@ Route::middleware('auth:sanctum')->get('/update-profile', [UserController::class
 
 Route::post('register', [UserController::class, 'registration'])->name('register');
 Route::post('login', [UserController::class, 'login'])->name('login');
+Route::get('/auth-fail', function () {
+    return response()->json(['message' => 'Invalid token'], 401);
+})->name('/auth-fail');

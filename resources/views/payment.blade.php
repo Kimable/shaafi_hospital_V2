@@ -33,7 +33,7 @@
             <form action="{{ route('payment.post') }}" method="post">
               @csrf
               <h3>Make A payment</h3>
-              <div class="mb-3">
+              <!-- <div class="mb-3">
                 <label for="name" class="form-label">Your Name</label>
                 <input type="text" class="form-control" name="name" id="name" required>
               </div>
@@ -41,13 +41,13 @@
                 <label for="email" class="form-label">Your Email</label>
                 <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp"
                   required>
-              </div>
+              </div> -->
               <div class="mb-3">
                 <label for="phone" class="form-label">Phone No</label>
                 <input type="text" name="phone" class="form-control" id="phone">
               </div>
               <div class="mb-3">
-                <label for="amount" class="form-label">Amount to Pay</label>
+                <label for="amount" class="form-label">Amount to Pay (In USD)</label>
                 <input type="text" name="amount" class="form-control" id="amount">
               </div>
               <button type="submit" class="btn btn-primary">Pay Now</button>

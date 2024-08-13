@@ -183,5 +183,23 @@ class UserController extends Controller
         }
 
     }
+    // Delete User
+    public function deleteAccount(Request $request, $email)
+    {
 
+        $user = User::where('email', $email)->first();
+
+        if (!$user) {
+            return redirect()->back()->with('error', 'Email does not exist in our database');
+        }
+
+        if ($user->delete() !== true) {
+            return redirect()->back()->with('error', 'Email does not exist in our database');
+        } else {
+            return redirect('/delete-success');
+        }
+
+
+
+    }
 }

@@ -78,6 +78,7 @@ class AppointmentsController extends Controller
         return view('admin/manageAppointments')->with('appointments', $appointments);
     }
 
+    // Admin
     public function viewAppointment($id)
     {
         if (!Auth::check()) {
@@ -100,9 +101,12 @@ class AppointmentsController extends Controller
 
         $doctor = Auth::user();
 
-        $appointments = Appointment::all()->where('doctor_id', $doctor->id);
+        $appointments = Appointment::all()->where('booked_doctor_id', $doctor->id);
+        $users = User::all();
 
-        return view('doctor/manageAppointments', ['appointments' => $appointments, 'doctor' => $doctor]);
+
+
+        return view('doctor/manageAppointments', ['appointments' => $appointments, 'users' => $users]);
     }
 
     public function viewAppointmentDoctors($id)
@@ -111,7 +115,9 @@ class AppointmentsController extends Controller
             return view('unauthorized');
         }
 
-        $appointment = Appointment::find($id);
+
+        $appointment = Appointment::with('user')->find($id);
+        // dd($appointment);
         return view('doctor/viewAppointment')->with('appointment', $appointment);
     }
 

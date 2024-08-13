@@ -17,7 +17,7 @@
             <h2 class="mb-3">Message</h2>
             <div class="card view-appointment">
               <div class="card-body">
-                <h5 class="fw-bold">Subject: <span class="tertiary-color">{{ $message->msgTitle }}</span></h5>
+                <h5 class="fw-bold">Subject: <span class="tertiary-color">{{ $message->message_title }}</span></h5>
 
                 <hr>
 
