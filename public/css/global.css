@@ -87,6 +87,17 @@ h2 {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28252, 252, 252, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
+.nav-header {
+    background-color: var(--light);
+}
+
+.nav-header a {
+    color: var(--primary);
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    display: block;
+}
 .navbar .logo {
     display: none;
 }
@@ -95,14 +106,15 @@ h2 {
     width: 50px;
 }
 .navbar {
-    background-color: var(--secondary-light);
+    background-color: var(--tertiary);
 }
 
-.navbar .nav-link {
-    color: var(--secondary);
-}
 .nav-link {
     color: var(--light);
+}
+
+.dropend #navbarDropdown {
+    color: #000;
 }
 .nav-link:hover {
     color: var(--primary);
@@ -115,7 +127,8 @@ h2 {
 .dropend .dropdown-toggle {
     margin-left: 1em;
 }
-.dropdown-item:hover {
+.dropdown-item:hover,
+.dropend #navbarDropdown:hover {
     color: var(--primary);
 }
 /* .dropdown .dropdown-menu {
@@ -155,7 +168,7 @@ h2 {
 }
 /* ---------------------------------------------- */
 .sidebar {
-    background-color: var(--secondary);
+    background-color: var(--tertiary);
 }
 
 .subtitle {
@@ -179,7 +192,7 @@ h2 {
     }
 
     .navbar {
-        background-color: var(--secondary);
+        background-color: var(--tertiary);
     }
     .navbar .logo {
         display: block;

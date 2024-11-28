@@ -47,14 +47,14 @@
                 <div class="logo">
                     <a class="navbar-brand" href="/">
                         <img
-                            src="{{ url('img/shaafi-logo-text.png') }}"
+                            src="{{ url('img/shaafi-logo-text-white.png') }}"
                             alt="Logo"
                         />
                     </a>
                 </div>
                 <div class="emergency-contact">
                     <p>
-                        <span style="color: #ec1c24; font-weight: 700"
+                        <span style="color: var(--secondary); font-weight: 700"
                             ><i
                                 style="margin-right: 0.6rem"
                                 class="bi bi-telephone-forward"
@@ -66,13 +66,16 @@
             </div>
         </div>
 
+        <!-- For Mobile Devices -->
         <nav class="navbar navbar-expand-lg">
             <div class="container">
                 <div class="logo">
                     <a class="navbar-brand" href="/">
                         <img
-                            src="{{ url('img/shaafi-logo-text.png') }}"
-                            alt="Logo"
+                            src="{{
+                                url('img/shaafi-logo-text-transparent.png')
+                            }}"
+                            alt="Shaafi Hospital Logo"
                         />
                     </a>
                 </div>

@@ -72,7 +72,7 @@
 
 .contact-form form,
 .appointment form {
-    background-color: var(--secondary);
+    background-color: var(--tertiary);
     padding: 1.5rem;
     border-radius: 12px;
     color: var(--light);
@@ -117,7 +117,7 @@
 }
 
 .search_filter {
-    background-color: var(--secondary);
+    background-color: var(--tertiary);
 }
 
 .bottom-nav {
@@ -190,7 +190,7 @@
 
 /* Forms Style */
 .form-container form {
-    background-color: var(--secondary);
+    background-color: var(--tertiary);
     padding: 1.5rem;
     border-radius: 12px;
     color: var(--light);
@@ -198,17 +198,6 @@
 
 .form-select {
     width: 100%;
-}
-
-.nav-header {
-    background-color: var(--secondary);
-}
-
-.nav-header a {
-    color: var(--light);
-    font-size: 1.1rem;
-    text-decoration: none;
-    display: block;
 }
 
 .mobile-logo {

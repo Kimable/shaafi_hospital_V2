@@ -64,9 +64,7 @@
     width: 3rem;
     border-radius: 8px;
     height: 3rem;
-    box-shadow:
-        0 4px 8px 0 rgba(0, 0, 0, 0.2),
-        0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     position: relative;
 }
 
@@ -84,12 +82,13 @@
 }
 
 .service-item {
-    background-color: var(--secondary);
+    background-color: var(--tertiary);
     padding: 1rem 1.4rem;
     margin: 0.3rem 0;
     color: var(--light);
     text-align: center;
     text-transform: uppercase;
+    font-weight: 700;
     border-radius: 10px;
 }
 
@@ -110,7 +109,7 @@
 
 /* Doctors */
 .doctor {
-    background-color: var(--secondary-light);
+    background-color: var(--tertiary-light);
     margin-bottom: 0.6rem;
 }
 .doctor img {
@@ -120,7 +119,7 @@
 }
 .doctor h5,
 .doctor p {
-    color: var(--accent);
+    color: #000;
 }
 
 .doctor a {
@@ -128,11 +127,11 @@
 }
 
 .doctor a:hover {
-    color: var(--tertiary);
+    color: var(--primary);
 }
 
 .doctor .card-footer {
-    background-color: var(--accent);
+    background-color: var(--tertiary);
 }
 
 /* Apointment */
