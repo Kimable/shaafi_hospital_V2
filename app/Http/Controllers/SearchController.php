@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Doctor; // Replace 'Doctor' with your actual model name
+use App\Models\User;
 
 class SearchController extends Controller
 {
@@ -25,7 +26,8 @@ class SearchController extends Controller
         //dd($doctor);
 
         // Query the database based on the search criteria
-        $doctors = Doctor::where('specialty', $specialty)->orWhere('id', $doctor)->get();
+        $doctors = Doctor::with('user')->where('specialty', $specialty)->orWhere('user_id', $doctor)->get();
+
 
         // Pass the search results to the view for display
         return view('searchResults', ['doctors' => $doctors]);

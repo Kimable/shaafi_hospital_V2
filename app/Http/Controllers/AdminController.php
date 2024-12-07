@@ -29,7 +29,6 @@ class AdminController extends Controller
         $messages = ContactForm::all();
         $appointments = Appointment::all();
         return view('admin/dashboard', ['user' => $user, 'messages' => $messages, 'appointments' => $appointments]);
-
     }
 
     // Admin Doctor Logic
@@ -199,5 +198,4 @@ class AdminController extends Controller
 
         return redirect()->route('admin/manage-doctors')->with('success', 'Doctor updated successfully.');
     }
-
 }

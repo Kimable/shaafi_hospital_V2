@@ -185,15 +185,14 @@
                         <ul
                             class="navbar-nav justify-content-center align-items-center"
                         >
+                            <!-- Find a Doctor -->
                             <li class="nav-item">
-                                <a
-                                    class="nav-link"
-                                    aria-current="page"
-                                    href="/"
-                                    >{{ __("Home") }}</a
-                                >
+                                <a class="nav-link" href="/doctors">{{
+                                    __("Find a Doctor")
+                                }}</a>
                             </li>
-                            <!-- About Dropdown -->
+
+                            <!-- Medical Treatments Dropdown -->
                             <li class="nav-item dropdown">
                                 <a
                                     class="nav-link dropdown-toggle"
@@ -203,48 +202,7 @@
                                     data-bs-toggle="dropdown"
                                     aria-expanded="false"
                                 >
-                                    {{ __("About") }}
-                                </a>
-                                <ul
-                                    class="dropdown-menu"
-                                    aria-labelledby="navbarDropdown"
-                                >
-                                    <li>
-                                        <a
-                                            class="dropdown-item"
-                                            href="/about"
-                                            >{{ __("About Us") }}</a
-                                        >
-                                    </li>
-                                    <li>
-                                        <a
-                                            class="dropdown-item"
-                                            href="/our-story"
-                                            >{{ __("Our Story") }}</a
-                                        >
-                                    </li>
-                                    <li>
-                                        <a
-                                            class="dropdown-item"
-                                            href="/development"
-                                            >{{
-                                                __("Awards and Accredation")
-                                            }}</a
-                                        >
-                                    </li>
-                                </ul>
-                            </li>
-                            <!-- Clinical Services Dropdown -->
-                            <li class="nav-item dropdown">
-                                <a
-                                    class="nav-link dropdown-toggle"
-                                    href="#"
-                                    id="navbarDropdown"
-                                    role="button"
-                                    data-bs-toggle="dropdown"
-                                    aria-expanded="false"
-                                >
-                                    {{ __("Clinical Services") }}
+                                    {{ __("Medical Treatments") }}
                                 </a>
                                 <ul
                                     class="dropdown-menu"
@@ -578,10 +536,12 @@
                                     </li>
                                 </ul>
                             </li>
-                            <!-- End Clinical Services Dropdown -->
+
+                            <!-- End Medical Treatments Dropdown -->
 
                             <!-- Community Services Dropdown -->
-                            <li class="nav-item dropdown">
+
+                            <!-- <li class="nav-item dropdown">
                                 <a
                                     class="nav-link dropdown-toggle"
                                     href="#"
@@ -655,24 +615,35 @@
                                         </ul>
                                     </li>
                                 </ul>
-                            </li>
+                            </li> -->
+
                             <!-- End Community Services Dropdown -->
 
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a class="nav-link" href="/patient-guide">{{
                                     __("Patient Guide")
                                 }}</a>
-                            </li>
-                            <!--
-              <li class="nav-item">
-                <a class="nav-link" href="/doctors">Doctors</a>
-              </li> -->
+                            </li> -->
+
+                            <!-- <li class="nav-item" style="font-weight: 800">
+                                <a class="nav-link" id="quickIquiry">{{
+                                    "Quick Inquiry"
+                                }}</a>
+                            </li> -->
 
                             <li class="nav-item">
                                 <a href="/appointment" class="nav-link">{{
                                     __("Appointment")
                                 }}</a>
                             </li>
+
+                            <!-- My Reports -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="/login">{{
+                                    __("My Reports")
+                                }}</a>
+                            </li>
+
                             <!-- Get In Touch -->
                             <li class="nav-item dropdown">
                                 <a
@@ -716,6 +687,49 @@
                             </li>
                             <!-- End Get In Touch -->
 
+                            <!-- About Dropdown -->
+                            <li class="nav-item dropdown">
+                                <a
+                                    class="nav-link dropdown-toggle"
+                                    href="#"
+                                    id="navbarDropdown"
+                                    role="button"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                                >
+                                    {{ __("About") }}
+                                </a>
+                                <ul
+                                    class="dropdown-menu"
+                                    aria-labelledby="navbarDropdown"
+                                >
+                                    <li>
+                                        <a
+                                            class="dropdown-item"
+                                            href="/about"
+                                            >{{ __("About Us") }}</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                            class="dropdown-item"
+                                            href="/our-story"
+                                            >{{ __("Our Story") }}</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                            class="dropdown-item"
+                                            href="/development"
+                                            >{{
+                                                __("Awards and Accredation")
+                                            }}</a
+                                        >
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <!-- Languages -->
                             <li class="nav-item dropdown">
                                 <a
                                     class="nav-link dropdown-toggle"
@@ -748,6 +762,8 @@
             </div>
         </nav>
         <!-- Navbar End -->
+
+        <x-quick-inquiry-pop-up />
 
         <!-- Content -->
         {{ $slot }}
@@ -851,14 +867,14 @@
                             <a
                                 href="{{
                                     url(
-                                        'app/application-1f5263ed-9e19-4e2c-aa5b-79d462fe1803.apk'
+                                        'https://play.google.com/store/apps/details?id=com.kkimani.shaafihospital&pcampaignid=web_share'
                                     )
                                 }}"
-                                download
+                                target="_blank"
                             >
                                 <img
-                                    style="border-radius: 1rem; width: 60px"
-                                    src="{{ url('img/icon.png') }}"
+                                    style="width: 150px"
+                                    src="{{ url('img/playstore.png') }}"
                                     alt="W3Schools"
                                 />
                             </a>

@@ -128,6 +128,7 @@
       </div>
     </div>
 
+    <!-- Offer Pop up -->
     <x-pop-up />
 
     <div class="container">

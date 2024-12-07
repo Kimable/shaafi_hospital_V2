@@ -3,7 +3,6 @@
 use App\Http\Controllers\AppointmentsController;
 use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\App;
 
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\DoctorController;
@@ -16,10 +15,9 @@ use App\Http\Controllers\UserController;
 use App\Models\Appointment;
 use App\Models\Doctor;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
 
 Route::get('/', function () {
-    $doctors = Doctor::all();
+    $doctors = Doctor::with('user')->get();
     return view('home')->with('doctors', $doctors);
 });
 
@@ -53,6 +51,10 @@ Route::get('/life-support-training', function () {
 
 Route::get('patient-guide', function () {
     return view('patientGuide');
+});
+
+Route::get('privacy-policy', function () {
+    return view('privacy-policy');
 });
 
 

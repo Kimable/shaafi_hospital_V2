@@ -19,6 +19,8 @@
       </div>
     </div>
 
+    <x-search-filter :$doctors />
+
     <!-- Show Doctors -->
     <div class="container py-5">
       <div class="not-added">
