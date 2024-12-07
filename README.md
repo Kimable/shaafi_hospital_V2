@@ -4,4 +4,4 @@ We are proud to be a leading healthcare institution dedicated to serving our com
 
 -   [Visit Our Website](https://dev.shaafihospital.so).
 
-If you have any question please contact the developer at [kkimani@yahoo.com](mailto:kkimani@yahoo.com).
+If you have any question please contact the developer at [kelvin@kkimani.com](mailto:kelvin@kkimani.com).

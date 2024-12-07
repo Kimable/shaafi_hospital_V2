@@ -97,7 +97,11 @@
                 >
                     <div class="offcanvas-header">
                         <div id="offcanvasNavbarLabel" class="navbar-logo">
-                            <img src="img/logo-shaafi.png" alt="" />
+                            <img
+                                width="150px"
+                                src="img/shaafi-logo-text-transparent.png"
+                                alt="Nav Logo"
+                            />
                         </div>
                         <button
                             type="button"
@@ -208,15 +212,321 @@
                                     class="dropdown-menu"
                                     aria-labelledby="navbarDropdown"
                                 >
-                                    <li class="nav-item">
+                                    <!-- Specialties -->
+                                    <li class="nav-item dropend">
                                         <a
-                                            class="dropdown-item"
-                                            aria-current="page"
-                                            href="/services"
-                                            >{{ __("General Services") }}</a
+                                            class="nav-link dropdown-toggle"
+                                            href="#"
+                                            id="navbarDropdown"
+                                            role="button"
+                                            data-bs-toggle="dropdown"
+                                            aria-expanded="false"
                                         >
+                                            {{ __("Our Specialties") }}
+                                        </a>
+                                        <ul
+                                            class="dropdown-menu"
+                                            aria-labelledby="navbarDropdown"
+                                        >
+                                            <li>
+                                                <a
+                                                    class="dropdown-item"
+                                                    href="/development"
+                                                    >{{
+                                                        __(
+                                                            "Cardiothoracic Surgery"
+                                                        )
+                                                    }}</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    class="dropdown-item"
+                                                    href="/development"
+                                                    >{{
+                                                        __("Oncology & Cancer")
+                                                    }}</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    class="dropdown-item"
+                                                    href="/development"
+                                                    >{{
+                                                        __("Diabetic Services")
+                                                    }}</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    class="dropdown-item"
+                                                    href="/development"
+                                                    >{{
+                                                        __("Liver Transplant")
+                                                    }}</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    class="dropdown-item"
+                                                    href="/development"
+                                                    >{{
+                                                        __("Anaesthesiology")
+                                                    }}</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    class="dropdown-item"
+                                                    href="/development"
+                                                    >{{ __("Dermatology") }}</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    class="dropdown-item"
+                                                    href="/development"
+                                                    >{{
+                                                        __(
+                                                            "IVF & Infertility Treatments"
+                                                        )
+                                                    }}</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    class="dropdown-item"
+                                                    href="/development"
+                                                    >{{
+                                                        __("Nutrition & Health")
+                                                    }}</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    class="dropdown-item"
+                                                    href="/development"
+                                                    >{{
+                                                        __("Physiotherapy")
+                                                    }}</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    class="dropdown-item"
+                                                    href="/development"
+                                                    >{{
+                                                        __("General Surgery")
+                                                    }}</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    class="dropdown-item"
+                                                    href="/development"
+                                                    >{{
+                                                        __("Internal Medicine")
+                                                    }}</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    class="dropdown-item"
+                                                    href="/development"
+                                                    >{{ __("Paediatrics") }}</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    class="dropdown-item"
+                                                    href="/development"
+                                                    >{{
+                                                        __("Ophthalmology")
+                                                    }}</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    class="dropdown-item"
+                                                    href="/development"
+                                                    >{{ __("Psychiatry") }}</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    class="dropdown-item"
+                                                    href="/development"
+                                                    >{{
+                                                        __(
+                                                            "Radiology & Imaging"
+                                                        )
+                                                    }}</a
+                                                >
+                                            </li>
+                                        </ul>
                                     </li>
 
+                                    <!-- Procudures -->
+                                    <li class="nav-item dropend">
+                                        <a
+                                            class="nav-link dropdown-toggle"
+                                            href="#"
+                                            id="navbarDropdown"
+                                            role="button"
+                                            data-bs-toggle="dropdown"
+                                            aria-expanded="false"
+                                        >
+                                            {{ __("Procudures") }}
+                                        </a>
+                                        <ul
+                                            class="dropdown-menu"
+                                            aria-labelledby="navbarDropdown"
+                                        >
+                                            <li>
+                                                <a
+                                                    class="dropdown-item"
+                                                    href="/development"
+                                                    >{{ __("Chemotherapy") }}</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    class="dropdown-item"
+                                                    href="/development"
+                                                    >{{
+                                                        __(
+                                                            "Bone Marrow transplant"
+                                                        )
+                                                    }}</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    class="dropdown-item"
+                                                    href="/development"
+                                                    >{{
+                                                        __("Abdominal Sergery")
+                                                    }}</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    class="dropdown-item"
+                                                    href="/development"
+                                                    >{{ __("Biopsy") }}</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    class="dropdown-item"
+                                                    href="/development"
+                                                    >{{
+                                                        __("Gastric Bypass")
+                                                    }}</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    class="dropdown-item"
+                                                    href="/development"
+                                                    >{{
+                                                        __("Heart Transplant")
+                                                    }}</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    class="dropdown-item"
+                                                    href="/development"
+                                                    >{{ __("Hysterectomy") }}</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    class="dropdown-item"
+                                                    href="/development"
+                                                    >{{
+                                                        __("Immunotherapy")
+                                                    }}</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    class="dropdown-item"
+                                                    href="/development"
+                                                    >{{
+                                                        __(
+                                                            "Liver Resection Surgery"
+                                                        )
+                                                    }}</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    class="dropdown-item"
+                                                    href="/development"
+                                                    >{{
+                                                        __(
+                                                            "General & Reconstructive Surgery"
+                                                        )
+                                                    }}</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    class="dropdown-item"
+                                                    href="/development"
+                                                    >{{
+                                                        __(
+                                                            "Pancreatic Resection & Surgery"
+                                                        )
+                                                    }}</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    class="dropdown-item"
+                                                    href="/development"
+                                                    >{{
+                                                        __(
+                                                            "Spine Fusion surgery"
+                                                        )
+                                                    }}</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    class="dropdown-item"
+                                                    href="/development"
+                                                    >{{
+                                                        __(
+                                                            "Pulmonary Function Testing"
+                                                        )
+                                                    }}</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    class="dropdown-item"
+                                                    href="/development"
+                                                    >{{
+                                                        __("Prostate Resection")
+                                                    }}</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    class="dropdown-item"
+                                                    href="/development"
+                                                    >{{
+                                                        __("Photocoagulation")
+                                                    }}</a
+                                                >
+                                            </li>
+                                        </ul>
+                                    </li>
+
+                                    <!-- Center of Excellence -->
                                     <li class="nav-item dropend">
                                         <a
                                             class="nav-link dropdown-toggle"
@@ -289,84 +599,18 @@
                                         </ul>
                                     </li>
 
-                                    <li class="nav-item dropend">
+                                    <!-- General Services -->
+                                    <li class="nav-item">
                                         <a
-                                            class="nav-link dropdown-toggle"
-                                            href="#"
-                                            id="navbarDropdown"
-                                            role="button"
-                                            data-bs-toggle="dropdown"
-                                            aria-expanded="false"
+                                            class="dropdown-item"
+                                            aria-current="page"
+                                            href="/services"
+                                            >{{ __("General Services") }}</a
                                         >
-                                            {{ __("Specialties & Categories") }}
-                                        </a>
-                                        <ul
-                                            class="dropdown-menu"
-                                            aria-labelledby="navbarDropdown"
-                                        >
-                                            <li>
-                                                <a
-                                                    class="dropdown-item"
-                                                    href="/development"
-                                                    >{{ __("Brain") }}</a
-                                                >
-                                            </li>
-                                            <li>
-                                                <a
-                                                    class="dropdown-item"
-                                                    href="/development"
-                                                    >{{ __("Cancer") }}</a
-                                                >
-                                            </li>
-                                            <li>
-                                                <a
-                                                    class="dropdown-item"
-                                                    href="/development"
-                                                    >{{
-                                                        __("Bone and Joint")
-                                                    }}</a
-                                                >
-                                            </li>
-                                            <li>
-                                                <a
-                                                    class="dropdown-item"
-                                                    href="/development"
-                                                    >{{ __("Eye") }}</a
-                                                >
-                                            </li>
-                                            <li>
-                                                <a
-                                                    class="dropdown-item"
-                                                    href="/development"
-                                                    >{{
-                                                        __("General Surgery")
-                                                    }}</a
-                                                >
-                                            </li>
-                                            <li>
-                                                <a
-                                                    class="dropdown-item"
-                                                    href="/development"
-                                                    >{{
-                                                        __("Internal Medicine")
-                                                    }}</a
-                                                >
-                                            </li>
-                                            <li>
-                                                <a
-                                                    class="dropdown-item"
-                                                    href="/development"
-                                                    >{{
-                                                        __(
-                                                            "Intervention Radiology"
-                                                        )
-                                                    }}</a
-                                                >
-                                            </li>
-                                        </ul>
                                     </li>
 
-                                    <li class="nav-item dropend">
+                                    <!-- Multi dispiplinary team -->
+                                    <!-- <li class="nav-item dropend">
                                         <a
                                             class="nav-link dropdown-toggle"
                                             href="#"
@@ -409,9 +653,10 @@
                                                 >
                                             </li>
                                         </ul>
-                                    </li>
+                                    </li> -->
 
-                                    <li class="nav-item dropend">
+                                    <!-- Anciliary Servives -->
+                                    <!-- <li class="nav-item dropend">
                                         <a
                                             class="nav-link dropdown-toggle"
                                             href="#"
@@ -485,8 +730,9 @@
                                                 >
                                             </li>
                                         </ul>
-                                    </li>
+                                    </li> -->
 
+                                    <!-- Medical Checkup -->
                                     <li class="nav-item dropend">
                                         <a
                                             class="nav-link dropdown-toggle"
@@ -625,12 +871,6 @@
                                 }}</a>
                             </li> -->
 
-                            <!-- <li class="nav-item" style="font-weight: 800">
-                                <a class="nav-link" id="quickIquiry">{{
-                                    "Quick Inquiry"
-                                }}</a>
-                            </li> -->
-
                             <li class="nav-item">
                                 <a href="/appointment" class="nav-link">{{
                                     __("Appointment")
@@ -638,10 +878,52 @@
                             </li>
 
                             <!-- My Reports -->
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a class="nav-link" href="/login">{{
                                     __("My Reports")
                                 }}</a>
+                            </li> -->
+
+                            <!-- About Dropdown -->
+                            <li class="nav-item dropdown">
+                                <a
+                                    class="nav-link dropdown-toggle"
+                                    href="#"
+                                    id="navbarDropdown"
+                                    role="button"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                                >
+                                    {{ __("About") }}
+                                </a>
+                                <ul
+                                    class="dropdown-menu"
+                                    aria-labelledby="navbarDropdown"
+                                >
+                                    <li>
+                                        <a
+                                            class="dropdown-item"
+                                            href="/about"
+                                            >{{ __("About Us") }}</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                            class="dropdown-item"
+                                            href="/our-story"
+                                            >{{ __("Our Story") }}</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                            class="dropdown-item"
+                                            href="/development"
+                                            >{{
+                                                __("Awards and Accredation")
+                                            }}</a
+                                        >
+                                    </li>
+                                </ul>
                             </li>
 
                             <!-- Get In Touch -->
@@ -687,46 +969,10 @@
                             </li>
                             <!-- End Get In Touch -->
 
-                            <!-- About Dropdown -->
-                            <li class="nav-item dropdown">
-                                <a
-                                    class="nav-link dropdown-toggle"
-                                    href="#"
-                                    id="navbarDropdown"
-                                    role="button"
-                                    data-bs-toggle="dropdown"
-                                    aria-expanded="false"
-                                >
-                                    {{ __("About") }}
-                                </a>
-                                <ul
-                                    class="dropdown-menu"
-                                    aria-labelledby="navbarDropdown"
-                                >
-                                    <li>
-                                        <a
-                                            class="dropdown-item"
-                                            href="/about"
-                                            >{{ __("About Us") }}</a
-                                        >
-                                    </li>
-                                    <li>
-                                        <a
-                                            class="dropdown-item"
-                                            href="/our-story"
-                                            >{{ __("Our Story") }}</a
-                                        >
-                                    </li>
-                                    <li>
-                                        <a
-                                            class="dropdown-item"
-                                            href="/development"
-                                            >{{
-                                                __("Awards and Accredation")
-                                            }}</a
-                                        >
-                                    </li>
-                                </ul>
+                            <li class="nav-item" style="cursor: pointer">
+                                <a class="nav-link" id="quickIquiry">{{
+                                    "Quick Inquiry"
+                                }}</a>
                             </li>
 
                             <!-- Languages -->
@@ -911,24 +1157,53 @@
         <!-- Footer End-->
         <!-- .Sticky Navbar bottom -->
         <div class="bottom-nav">
+            <style>
+                .bottom-nav a:hover {
+                    color: var(--primary-light);
+                }
+            </style>
             <div class="container">
                 <div
                     class="fixed-bottom d-flex justify-content-center align-items-center"
                 >
                     <div class="item">
-                        <a href="/appointment"
-                            ><i class="bi bi-calendar-check"></i
-                        ></a>
+                        <a href="/appointment">
+                            <img
+                                width="30px"
+                                src="./img/icons/ecg_heart.png"
+                                alt="Check Up"
+                            />
+                        </a>
+                        <a class="link-text" href="/appointment">Checkup</a>
+                    </div>
+                    <div class="item">
+                        <a href="/appointment">
+                            <img
+                                width="30px"
+                                src="./img/icons/calendar.png"
+                                alt="Appointment"
+                            />
+                        </a>
                         <a class="link-text" href="/appointment">Appointment</a>
                     </div>
                     <div class="item">
-                        <a href="/doctors"
-                            ><i class="bi bi-person-badge"></i
-                        ></a>
-                        <a class="link-text" href="/doctors">Find Doctor</a>
+                        <a href="/doctors">
+                            <img
+                                width="30px"
+                                src="./img/icons/stethoscope.png"
+                                alt="Stethoscope"
+                            />
+                        </a>
+                        <a class="link-text" href="/doctors"> Doctors</a>
                     </div>
                     <div class="item">
-                        <a href="/contact"><i class="bi bi-hospital"></i></a>
+                        <a href="/contact">
+                            <img
+                                width="33px"
+                                src="./img/icons/emergency.png"
+                                alt="Emergency"
+                            />
+                        </a>
                         <a class="link-text" href="/contact">Emergency</a>
                     </div>
                 </div>

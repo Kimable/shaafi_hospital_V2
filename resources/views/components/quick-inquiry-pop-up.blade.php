@@ -6,7 +6,7 @@
         left: 50%;
         transform: translate(-50%, -50%);
         padding: 20px;
-        background-color: var(--tertiary);
+        background-color: var(--secondary);
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         z-index: 1000;
         border-radius: 10px;
@@ -15,14 +15,11 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
+        width: 400px;
     }
 
     .popup h2 {
         color: white;
-    }
-
-    .popup-content {
-        text-align: center;
     }
 
     #closeBtn {
@@ -57,18 +54,46 @@
             <i class="bi bi-x-lg"></i>
         </div>
     </div>
-    <div class="popup-content">
+    <div>
         <h2>{{ __("Quick Inquiry") }}</h2>
         <p>
             {{
                 __(
-                    "Book an appointment through our website and enjoy serious discounts on your next hospital visit."
+                    "Send us your phone numebr or email and we will contact you within an hour"
                 )
             }}
         </p>
-        <a href="/appointment" class="btn btn-primary">{{
-            __("Book Appointment")
-        }}</a>
+        <form action="" method="post">
+            <div class="mb-3">
+                <label class="form-label" for="name">{{ __("Name") }}</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    name="name"
+                    id="name"
+                    placeholder="Your name"
+                    required
+                />
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="name">{{
+                    __("Phone or Email")
+                }}</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    name="name"
+                    id="name"
+                    required
+                    placeholder="Your Phone no. or email"
+                />
+                <div class="mt-3">
+                    <button class="btn btn-primary" type="submit">
+                        Submit
+                    </button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
 
@@ -79,25 +104,11 @@
 
     console.log("About to working");
     quickIquiryBtn.addEventListener("click", () => {
-        console.log("working");
         quickIquiryPopUp.style.display = "flex";
     });
 
     // Close pop up
     closePopupIcon.addEventListener("click", () => {
-        closePopup();
-    });
-
-    document.addEventListener("click", (event) => {
-        if (
-            !quickIquiryPopUp.contains(event.target) &&
-            event.target !== closeIcon
-        ) {
-            closePopup();
-        }
-    });
-
-    function closePopup() {
         quickIquiryPopUp.style.display = "none";
-    }
+    });
 </script>
