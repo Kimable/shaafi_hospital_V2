@@ -22,7 +22,6 @@ class AppointmentsController extends Controller
 
 
         return view('user/appointment', ['doctors' => $doctors]);
-
     }
 
     public function bookAppointment(Request $request)
@@ -89,6 +88,10 @@ class AppointmentsController extends Controller
 
         $doctor = User::find($appointment->booked_doctor_id);
 
+        if (!$doctor || $appointment->booked_doctor_id == null) {
+            $doctor = null;
+        }
+
         return view('admin/viewAppointment', ['appointment' => $appointment, 'doctor' => $doctor]);
     }
 
@@ -149,8 +152,6 @@ class AppointmentsController extends Controller
 
 
             return view('user/appointments', ['appointments' => $mergedAppointments]);
-
-
         } catch (\Throwable $th) {
             return response()->json(['errorMsg' => $th->getMessage()], 500);
         }
@@ -235,5 +236,4 @@ class AppointmentsController extends Controller
 
         return redirect()->route('appointment.post')->with('success', 'Congratulations! Your booking was successful!');
     }
-
 }

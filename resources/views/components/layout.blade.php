@@ -376,7 +376,7 @@
                                             data-bs-toggle="dropdown"
                                             aria-expanded="false"
                                         >
-                                            {{ __("Procudures") }}
+                                            {{ __("Procedures") }}
                                         </a>
                                         <ul
                                             class="dropdown-menu"
@@ -1170,7 +1170,7 @@
                         <a href="/appointment">
                             <img
                                 width="30px"
-                                src="./img/icons/ecg_heart.png"
+                                src="/img/icons/ecg_heart.png"
                                 alt="Check Up"
                             />
                         </a>
@@ -1180,7 +1180,7 @@
                         <a href="/appointment">
                             <img
                                 width="30px"
-                                src="./img/icons/calendar.png"
+                                src="/img/icons/calendar.png"
                                 alt="Appointment"
                             />
                         </a>
@@ -1190,7 +1190,7 @@
                         <a href="/doctors">
                             <img
                                 width="30px"
-                                src="./img/icons/stethoscope.png"
+                                src="/img/icons/stethoscope.png"
                                 alt="Stethoscope"
                             />
                         </a>
@@ -1200,7 +1200,7 @@
                         <a href="/contact">
                             <img
                                 width="33px"
-                                src="./img/icons/emergency.png"
+                                src="/img/icons/emergency.png"
                                 alt="Emergency"
                             />
                         </a>

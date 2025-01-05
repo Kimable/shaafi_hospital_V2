@@ -86,20 +86,7 @@ Route::put('update-doctor-profile/{id}', [DoctorController::class, 'updateDoctor
 // User Dashboard
 Route::get('/dashboard', [UserController::class, 'showUserDashboard'])->name('dashboard');
 
-//Admin Auth Routes
-Route::get('admin', function () {
-    if (!Auth::guard('admin')->check()) {
-        return redirect('admin/login');
-    } else {
-        return redirect('admin/dashboard');
-    }
-});
 
-Route::get('admin/register', [AdminController::class, 'showAdminRegistrationForm'])->name('admin/register');
-Route::post('admin/register', [AdminController::class, 'adminRegistration'])->name('admin/register.post');
-Route::get('admin/login', [AdminController::class, 'showAdminLoginForm'])->name('admin/login');
-Route::post('admin/login', [AdminController::class, 'adminLogin'])->name('admin/login.post');
-Route::get('admin/dashboard', [AdminController::class, 'showAdminDashboard'])->name('admin/dashboard');
 
 
 // Admin Routes
@@ -203,6 +190,10 @@ Route::get('/auth-fail', function () {
     return response()->json(['message' => 'Invalid token'], 401);
 })->name('/auth-fail');
 
+// Specialties Routes
+Route::get('/specialties/cardiothoracic-surgery', function () {
+    return view('specialties/cardiothoracic-surgery');
+});
 
 
 Route::fallback(function () {

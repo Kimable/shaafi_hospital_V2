@@ -169,7 +169,7 @@ class AdminController extends Controller
             return redirect()->route('admin/manage-doctors')->with('error', 'Doctor not found.');
         }
 
-        $doctor = new Doctor();
+
 
         $request->validate([
             'first_name' => 'required',
@@ -188,13 +188,13 @@ class AdminController extends Controller
 
         $user->save();
 
-        $doctor->qualifications = $request->input('qualifications');
+        $doctor = Doctor::where('user_id', $user->id)->first();
         $doctor->specialty = $request->input('specialty');
+        $doctor->qualifications = $request->input('qualifications');
         $doctor->languages = $request->input('languages');
         $doctor->description = $request->input('description');
-        $doctor->user_id = $user->id;
-
         $doctor->save();
+
 
         return redirect()->route('admin/manage-doctors')->with('success', 'Doctor updated successfully.');
     }

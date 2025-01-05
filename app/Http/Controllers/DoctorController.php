@@ -85,14 +85,7 @@ class DoctorController extends Controller
             return view('doctor/auth');
         }
 
-        $doctor = User::find($id);
-
-        if (!$doctor) {
-            return redirect()->route('admin/manage-doctors')->with('error', 'Doctor not found.');
-        }
-
         $user = User::find($id);
-
 
         if (!$user) {
             return redirect()->route('admin/manage-doctors')->with('error', 'Doctor not found.');
@@ -115,17 +108,15 @@ class DoctorController extends Controller
         $user->phone = $request->input('phone');
         $user->save();
 
-        $doctor = new Doctor();
-        $doctor->qualifications = $request->input('qualifications');
+        $doctor = Doctor::where('user_id', $user->id)->first();
+        // Update doctor profile
         $doctor->specialty = $request->input('specialty');
+        $doctor->qualifications = $request->input('qualifications');
         $doctor->languages = $request->input('languages');
         $doctor->description = $request->input('description');
-        $doctor->user_id = $user->id;
-
         $doctor->save();
 
         return redirect()->route("doctor-profile")->with('success', 'Profile updated successfully.');
-
     }
 
     // Book Specific doctor
@@ -185,5 +176,4 @@ class DoctorController extends Controller
 
         return redirect()->route('appointment.post')->with('success', 'Congratulations! Your booking was successful!');
     }
-
 }

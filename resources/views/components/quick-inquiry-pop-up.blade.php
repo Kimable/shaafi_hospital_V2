@@ -37,8 +37,8 @@
     }
 
     @media (max-width: 600px) {
-        .popup {
-            width: 95%;
+        #inquiry_popup {
+            width: 90%;
             height: 65%;
             top: 50%;
             left: 50%;

@@ -30,9 +30,11 @@
                 <p class="fw-bold">Time: <span class="tertiary-color">{{ $appointment->time }}</span></p>
                 <p class="fw-bold">Details: <span class="tertiary-color">{{ $appointment->description }}</span></p>
 
+                @if($doctor)
                 <p class="fw-bold">Doctor Booked: <span class="tertiary-color">Dr. {{ $doctor->first_name }}
-                        {{ $doctor->last_name }}</span>
+                    {{ $doctor->last_name }}</span>
                 </p>
+                @endif
                 <div class="row">
                 <form class="col-6" action="{{ route('appointment-completed', $appointment->id) }}" method="post">
                   @csrf

@@ -24,6 +24,10 @@ h2 {
     color: var(--secondary);
 }
 
+img {
+    max-width: 100%;
+}
+
 /* Buttons */
 .btn {
     border-radius: 5px;

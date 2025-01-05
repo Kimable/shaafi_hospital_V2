@@ -26,8 +26,13 @@ class SearchController extends Controller
         //dd($doctor);
 
         // Query the database based on the search criteria
-        $doctors = Doctor::with('user')->where('specialty', $specialty)->orWhere('user_id', $doctor)->get();
-
+        $doctors = Doctor::with('user')
+            ->where(function ($query) use ($specialty) {
+                $query->whereRaw('LOWER(specialty) LIKE ?', ['%' . strtolower($specialty) . '%'])
+                    ->orWhereRaw('LOWER(specialty) LIKE ?', ['%' . str_replace(' ', '%', strtolower($specialty)) . '%']);
+            })
+            ->orWhere('user_id', $doctor)
+            ->get();
 
         // Pass the search results to the view for display
         return view('searchResults', ['doctors' => $doctors]);

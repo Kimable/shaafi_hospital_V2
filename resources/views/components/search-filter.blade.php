@@ -16,21 +16,17 @@
                         <option value="">
                             --{{ __("Choose Specialty") }}--
                         </option>
-                        <option value="Orthopaedic Surgery">
-                            Orthopaedic Surgery
-                        </option>
-                        <option value="Orthopaedics and Spinal Surgery">
-                            Orthopaedics and Spinal Surgery
+                        <option value="Orthopaedic and Spinal Surgery">
+                            Orthopaedic and Spinal Surgery
                         </option>
                         <option
                             value="Otorhinolaryngology, Head and Neck Surgery"
                         >
-                            Otorhinolaryngology, Head and Neck Surgery
+                            Otorhinolaryngology, Head and Neck Surgery (ENT)
                         </option>
-                        <option value="Paediatric Surgery">
-                            Paediatric Surgery
+                        <option value="Paediatric">
+                            Paediatric and Paediatric Surgery
                         </option>
-                        <option value="Paediatrics">Paediatrics</option>
                         <option value="Plastic Surgery">Plastic Surgery</option>
                         <option value="Anaesthesiology">Anaesthesiology</option>
                         <option value="Cardiology">Cardiology</option>
@@ -40,7 +36,7 @@
                         <option value="Internal Medicine">
                             Internal Medicine
                         </option>
-                        <option value="Cardiothoracic Surgery">
+                        <option value="Cardiothoracic">
                             Cardiothoracic Surgery
                         </option>
                         <option value="Clinical Psychology">
@@ -62,13 +58,7 @@
                         <option value="Thoracic Surgery">
                             Thoracic Surgery
                         </option>
-                        <option value="General Surgery">General Surgery</option>
-                        <option value="Gynaecological Oncology">
-                            Gynaecological Oncology
-                        </option>
-                        <option value="Internal Medicine">
-                            Internal Medicine
-                        </option>
+                        <option value="Surgery">General Surgery</option>
                         <option value="Rheumatology">Rheumatology</option>
                         <option value="Nephrology">Nephrology</option>
                         <option value="Neuro-Behavioural Medicine">
@@ -79,8 +69,10 @@
                         <option value="Nuclear Medicine">
                             Nuclear Medicine
                         </option>
-                        <option value="Obstetrician">Obstetrician</option>
                         <option value="Gynaecology">Gynaecology</option>
+                        <option value="Obstetrics">Obstetrics</option>
+                        <option value="Consultant">Medical Consultant</option>
+                        <option value="Laparoscopy">Laparoscopy</option>
                         <option value="Occupational Health">
                             Occupational Health
                         </option>
@@ -93,15 +85,10 @@
                             Oral-Maxillofacial Surgery
                         </option>
                         <option value="Orthodontics">Orthodontics</option>
-                        <option value="67">Orthopaedic</option>
-                        <option value="Orthopaedic Oncology">
-                            Orthopaedic Oncology
-                        </option>
-                        <option value="Preventive Medicine">
-                            Preventive Medicine
-                        </option>
+                        <option value="Orthopaedic">Orthopaedic</option>
+
+                        <option value="Neonatology">Neonatology</option>
                         <option value="Radiology">Radiology</option>
-                        <option value="Urogynaecology">Urogynaecology</option>
                         <option value="Urology">Urology</option>
                         <option value="Wellness">Wellness</option>
                     </select>
@@ -180,6 +167,10 @@
                         <option value="{{ $doctor->user->id }}">
                             Dr. {{ $doctor->user->first_name }}
                             {{ $doctor->user->last_name }} ({{$doctor->specialty
+
+
+
+
 
 
                             }})

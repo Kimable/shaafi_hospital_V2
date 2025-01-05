@@ -52,7 +52,7 @@
 
             <div class="mb-3 specialty">
               <label for="specialty" class="form-label">Specialty</label>
-              <select name="specialty" class="form-select" id="specialty">
+              <select name="specialty" class="form-select" id="specialty" required>
                 <option selected>--Select Specialty--</option>
                 <option value="Orthopaedic Surgery">Orthopaedic Surgery</option>
                 <option value="Orthopaedics and Spinal Surgery">Orthopaedics and Spinal Surgery</option>
@@ -104,12 +104,12 @@
 
             <div class="mb-3">
               <label for="qualifications" class="form-label">Qualifications</label>
-              <input type="text" name="qualifications" class="form-control" id="qualifications">
+              <input type="text" name="qualifications" class="form-control" id="qualifications" required>
             </div>
 
             <div class="mb-3">
               <label for="languages" class="form-label">Languages</label>
-              <input type="text" name="languages" class="form-control" id="languages">
+              <input type="text" name="languages" class="form-control" id="languages" required>
             </div>
 
             <div class="mb-3">
