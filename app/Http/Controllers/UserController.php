@@ -26,7 +26,6 @@ class UserController extends Controller
             $messages = ContactForm::all();
             $appointments = Appointment::where('status', 'in_progress');
             return view('admin/dashboard', ['user' => $user, 'messages' => $messages, 'appointments' => $appointments]);
-
         }
 
         if ($user->role == 'doctor') {
@@ -34,11 +33,9 @@ class UserController extends Controller
             $appointments = Appointment::all();
 
             return view('doctor/doctorDashboard', ['user' => $user, 'messages' => $messages, 'appointments' => $appointments]);
-
         }
 
         return view('user/dashboard')->with('user', $user);
-
     }
 
     /**
@@ -108,7 +105,6 @@ class UserController extends Controller
         return back()->withErrors([
             'email' => 'Your provided credentials do not match in our records.',
         ])->onlyInput('email');
-
     }
 
     public function profile()
@@ -181,7 +177,6 @@ class UserController extends Controller
         } else {
             return redirect()->back()->with('error', 'User not found with the provided email.');
         }
-
     }
     // Delete User
     public function deleteAccount(Request $request, $email)
@@ -198,8 +193,5 @@ class UserController extends Controller
         } else {
             return redirect('/delete-success');
         }
-
-
-
     }
 }

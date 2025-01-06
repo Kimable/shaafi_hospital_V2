@@ -231,7 +231,7 @@
                                             <li>
                                                 <a
                                                     class="dropdown-item"
-                                                    href="/development"
+                                                    href="/specialties/cardiothoracic-surgery"
                                                     >{{
                                                         __(
                                                             "Cardiothoracic Surgery"
@@ -242,7 +242,7 @@
                                             <li>
                                                 <a
                                                     class="dropdown-item"
-                                                    href="/development"
+                                                    href="/specialties/oncology"
                                                     >{{
                                                         __("Oncology & Cancer")
                                                     }}</a
@@ -251,7 +251,7 @@
                                             <li>
                                                 <a
                                                     class="dropdown-item"
-                                                    href="/development"
+                                                    href="/specialties/diabetic-services"
                                                     >{{
                                                         __("Diabetic Services")
                                                     }}</a
@@ -260,7 +260,7 @@
                                             <li>
                                                 <a
                                                     class="dropdown-item"
-                                                    href="/development"
+                                                    href="/specialties/liver-transplant"
                                                     >{{
                                                         __("Liver Transplant")
                                                     }}</a
@@ -269,7 +269,7 @@
                                             <li>
                                                 <a
                                                     class="dropdown-item"
-                                                    href="/development"
+                                                    href="/specialties/anathesiology"
                                                     >{{
                                                         __("Anaesthesiology")
                                                     }}</a
@@ -285,7 +285,7 @@
                                             <li>
                                                 <a
                                                     class="dropdown-item"
-                                                    href="/development"
+                                                    href="/specialties/ivf"
                                                     >{{
                                                         __(
                                                             "IVF & Infertility Treatments"
@@ -296,7 +296,7 @@
                                             <li>
                                                 <a
                                                     class="dropdown-item"
-                                                    href="/development"
+                                                    href="/specialties/nutrition"
                                                     >{{
                                                         __("Nutrition & Health")
                                                     }}</a
@@ -305,16 +305,16 @@
                                             <li>
                                                 <a
                                                     class="dropdown-item"
-                                                    href="/development"
+                                                    href="/specialties/physiotheraphy"
                                                     >{{
-                                                        __("Physiotherapy")
+                                                        __("Physiotheraphy")
                                                     }}</a
                                                 >
                                             </li>
                                             <li>
                                                 <a
                                                     class="dropdown-item"
-                                                    href="/development"
+                                                    href="/specialties/surgery"
                                                     >{{
                                                         __("General Surgery")
                                                     }}</a
@@ -323,7 +323,7 @@
                                             <li>
                                                 <a
                                                     class="dropdown-item"
-                                                    href="/development"
+                                                    href="/specialties/internal-medicine"
                                                     >{{
                                                         __("Internal Medicine")
                                                     }}</a
@@ -332,17 +332,15 @@
                                             <li>
                                                 <a
                                                     class="dropdown-item"
-                                                    href="/development"
+                                                    href="/specialties/pediatric"
                                                     >{{ __("Paediatrics") }}</a
                                                 >
                                             </li>
                                             <li>
                                                 <a
                                                     class="dropdown-item"
-                                                    href="/development"
-                                                    >{{
-                                                        __("Ophthalmology")
-                                                    }}</a
+                                                    href="/specialties/ophthamology"
+                                                    >{{ __("Ophthamology") }}</a
                                                 >
                                             </li>
                                             <li>
@@ -355,7 +353,7 @@
                                             <li>
                                                 <a
                                                     class="dropdown-item"
-                                                    href="/development"
+                                                    href="/specialties/radiology"
                                                     >{{
                                                         __(
                                                             "Radiology & Imaging"
@@ -385,14 +383,14 @@
                                             <li>
                                                 <a
                                                     class="dropdown-item"
-                                                    href="/development"
+                                                    href="/procedures/chemotherapy"
                                                     >{{ __("Chemotherapy") }}</a
                                                 >
                                             </li>
                                             <li>
                                                 <a
                                                     class="dropdown-item"
-                                                    href="/development"
+                                                    href="/procedures/bone-marrow"
                                                     >{{
                                                         __(
                                                             "Bone Marrow transplant"
@@ -403,7 +401,7 @@
                                             <li>
                                                 <a
                                                     class="dropdown-item"
-                                                    href="/development"
+                                                    href="/procedures/abdominal-surgery"
                                                     >{{
                                                         __("Abdominal Sergery")
                                                     }}</a
@@ -412,14 +410,14 @@
                                             <li>
                                                 <a
                                                     class="dropdown-item"
-                                                    href="/development"
+                                                    href="/procedures/biopsy"
                                                     >{{ __("Biopsy") }}</a
                                                 >
                                             </li>
                                             <li>
                                                 <a
                                                     class="dropdown-item"
-                                                    href="/development"
+                                                    href="/procedures/gastric-bypass"
                                                     >{{
                                                         __("Gastric Bypass")
                                                     }}</a
@@ -428,7 +426,7 @@
                                             <li>
                                                 <a
                                                     class="dropdown-item"
-                                                    href="/development"
+                                                    href="/procedures/heart-transplant"
                                                     >{{
                                                         __("Heart Transplant")
                                                     }}</a
@@ -437,14 +435,14 @@
                                             <li>
                                                 <a
                                                     class="dropdown-item"
-                                                    href="/development"
+                                                    href="/procedures/hysterectomy"
                                                     >{{ __("Hysterectomy") }}</a
                                                 >
                                             </li>
                                             <li>
                                                 <a
                                                     class="dropdown-item"
-                                                    href="/development"
+                                                    href="/procedures/immunotherapy"
                                                     >{{
                                                         __("Immunotherapy")
                                                     }}</a

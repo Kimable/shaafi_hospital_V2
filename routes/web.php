@@ -195,6 +195,91 @@ Route::get('/specialties/cardiothoracic-surgery', function () {
     return view('specialties/cardiothoracic-surgery');
 });
 
+Route::get('/specialties/anathesiology', function () {
+    return view('specialties/anathesiology');
+});
+
+Route::get('/specialties/liver-transplant', function () {
+    return view('specialties/liver-transplant');
+});
+
+Route::get('/specialties/oncology', function () {
+    return view('specialties/oncology');
+});
+
+Route::get('/specialties/diabetic-services', function () {
+    return view('specialties/diabetic-services');
+});
+
+Route::get('/specialties/oncology', function () {
+    return view('specialties/oncology');
+});
+
+Route::get('/specialties/surgery', function () {
+    return view('specialties/surgery');
+});
+
+Route::get('/specialties/ivf', function () {
+    return view('specialties/ivf');
+});
+
+Route::get('/specialties/internal-medicine', function () {
+    return view('specialties/internal-medicine');
+});
+
+Route::get('/specialties/nutrition', function () {
+    return view('specialties/nutrition');
+});
+
+Route::get('/specialties/pediatric', function () {
+    return view('specialties/pediatric');
+});
+
+Route::get('/specialties/radiology', function () {
+    return view('specialties/radiology');
+});
+
+Route::get('/specialties/ophthamology', function () {
+    return view('specialties/ophthamology');
+});
+
+Route::get('/specialties/physiotheraphy', function () {
+    return view('specialties/physiotheraphy');
+});
+
+// Procedure Routes
+Route::get('/procedures/abdominal-surgery', function () {
+    return view('procedures/abdominal-surgery');
+});
+
+Route::get('/procedures/biopsy', function () {
+    return view('procedures/biopsy');
+});
+
+Route::get('/procedures/bone-marrow', function () {
+    return view('procedures/bone-marrow');
+});
+
+Route::get('/procedures/chemotherapy', function () {
+    return view('procedures/chemotherapy');
+});
+
+Route::get('/procedures/gastric-bypass', function () {
+    return view('procedures/gastric-bypass');
+});
+
+Route::get('/procedures/heart-transplant', function () {
+    return view('procedures/heart-transplant');
+});
+
+Route::get('/procedures/hysterectomy', function () {
+    return view('procedures/hysterectomy');
+});
+
+Route::get('/procedures/immunotherapy', function () {
+    return view('procedures/immunotherapy');
+});
+
 
 Route::fallback(function () {
     return view('404');
