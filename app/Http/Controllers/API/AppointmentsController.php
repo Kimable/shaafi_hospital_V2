@@ -16,7 +16,6 @@ class AppointmentsController extends Controller
             $appointmentCode = str_pad(mt_rand(0, 999999), 6, '0', STR_PAD_LEFT);
             $user = Auth::user();
 
-
             if (!$user) {
                 return response()->json(['errorMsg' => "You must be logged in to book an appointment."], 401);
             }
@@ -72,8 +71,6 @@ class AppointmentsController extends Controller
 
 
             return response()->json(['appointments' => $mergedAppointments], 200);
-
-
         } catch (\Throwable $th) {
             return response()->json(['errorMsg' => $th->getMessage()], 500);
         }

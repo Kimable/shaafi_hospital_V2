@@ -18,7 +18,6 @@ class PaymentCtrl extends Controller
         } else {
             return view("user/payment");
         }
-
     }
     /**
      * Start payment process
@@ -32,9 +31,9 @@ class PaymentCtrl extends Controller
             'channelName' => "WEB",
             'serviceName' => "API_PREAUTHORIZE",
             'serviceParams' => [
-                'merchantUid' => "M0913541",
-                'apiUserId' => "1007191",
-                'apiKey' => "API-908053044AHX",
+                'merchantUid' => env('MERCHANT_UID'),
+                'apiUserId' => env('API_USER_ID'),
+                'apiKey' => env('WAAFI_API_KEY'),
                 'paymentMethod' => "MWALLET_ACCOUNT",
                 'payerInfo' => [
                     'accountNo' => $request->input('phone')
@@ -63,9 +62,9 @@ class PaymentCtrl extends Controller
                 'channelName' => "WEB",
                 'serviceName' => "API_PREAUTHORIZE_COMMIT",
                 'serviceParams' => [
-                    'merchantUid' => "M0913541",
-                    'apiUserId' => "1007191",
-                    'apiKey' => "API-908053044AHX",
+                    'merchantUid' => env('MERCHANT_UID'),
+                    'apiUserId' => env('API_USER_ID'),
+                    'apiKey' => env('WAAFI_API_KEY'),
                     'paymentMethod' => "MWALLET_ACCOUNT",
                     'transactionId' => $data['params']['transactionId'],
                     'description' => "Committed",

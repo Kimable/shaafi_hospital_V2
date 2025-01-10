@@ -4,12 +4,26 @@ use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\AppointmentsController;
 use App\Models\Appointment;
 use App\Models\Doctor;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 
 Route::get('/doctors', function () {
     $doctors = Doctor::with('user')->get();
     return response()->json($doctors, 200);
+});
+
+// Get a single doctor
+Route::get('/doctor/{id}', function ($id) {
+    try {
+        $doctor = User::with('doctor')->find($id);
+        if (!$doctor) {
+            return response()->json(['message' => 'Doctor not found'], 404);
+        }
+        return response()->json($doctor, 200);
+    } catch (\Throwable $th) {
+        return response()->json(['message' => $th->getMessage()], 500);
+    }
 });
 
 Route::middleware('auth:sanctum')->post('book-appointment', [AppointmentsController::class, 'bookAppointment'])->name('book-appointment');

@@ -171,19 +171,19 @@
           <div class="row">
             <div class=" col-md-4">
               <div class="choose-item">
-                <p class="choose-title fw-bolder">87+</p>
+                <p class="choose-title fw-bolder">100+</p>
                 <span class="choose-text fw-bold">{{ __('Beds') }}</span>
               </div>
             </div>
             <div class="col-md-4">
               <div class="choose-item">
-                <p class="choose-title  fw-bolder">40+</p>
+                <p class="choose-title  fw-bolder">55+</p>
                 <span class="choose-text fw-bold">{{ __('Doctors') }}</span>
               </div>
             </div>
             <div class="col-md-4">
               <div class="choose-item">
-                <p class="choose-title  fw-bolder">25+</p>
+                <p class="choose-title  fw-bolder">30+</p>
                 <span class="choose-text fw-bold">{{ __('Specialists') }}</span>
               </div>
             </div>
