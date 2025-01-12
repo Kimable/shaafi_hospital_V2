@@ -53,7 +53,7 @@
               <button type="submit" class="btn btn-primary">Pay Now</button>
             </form>
           </div>
-        </div>
+        </div> 
       </div>
   
   </x-layout>

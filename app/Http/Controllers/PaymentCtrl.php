@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Mail\PaymentConfirmation;
 use App\Models\Payment;
+use App\Models\User;
+use App\Models\VideoConsult;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
 
 class PaymentCtrl extends Controller
 {
@@ -32,7 +36,7 @@ class PaymentCtrl extends Controller
             'serviceName' => "API_PREAUTHORIZE",
             'serviceParams' => [
                 'merchantUid' => env('MERCHANT_UID'),
-                'apiUserId' => env('API_USER_ID'),
+                'apiUserId' => (int) env('API_USER_ID'),
                 'apiKey' => env('WAAFI_API_KEY'),
                 'paymentMethod' => "MWALLET_ACCOUNT",
                 'payerInfo' => [
@@ -63,7 +67,7 @@ class PaymentCtrl extends Controller
                 'serviceName' => "API_PREAUTHORIZE_COMMIT",
                 'serviceParams' => [
                     'merchantUid' => env('MERCHANT_UID'),
-                    'apiUserId' => env('API_USER_ID'),
+                    'apiUserId' => (int) env('API_USER_ID'),
                     'apiKey' => env('WAAFI_API_KEY'),
                     'paymentMethod' => "MWALLET_ACCOUNT",
                     'transactionId' => $data['params']['transactionId'],
@@ -72,9 +76,27 @@ class PaymentCtrl extends Controller
                 ]
             ]);
             $commitData = $commitResponse->json();
+
+
             if ($commitData['errorCode'] != "0") {
                 dd($commitData);
             } else {
+                // Save payment details to the database
+                $videoConsultID = $request->input('video_consult_id');
+                if (!$videoConsultID) {
+                    return redirect()->back()->with('error', 'Error: Please select a service to pay for');
+                }
+                $bookedVideoConsult = VideoConsult::find($videoConsultID);
+                // Update video consult status to paid and save the transaction ID
+                $bookedVideoConsult->payment_id = $data['params']['transactionId'];
+                $bookedVideoConsult->save();
+
+                // send email after successful payment
+                $userId = $bookedVideoConsult->user_id;
+                $user = User::find($userId);
+
+                Mail::to($user->email)->send(new PaymentConfirmation($bookedVideoConsult, $user));
+
                 return view('user/payment-success');
             }
         } else {

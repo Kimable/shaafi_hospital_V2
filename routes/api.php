@@ -5,6 +5,7 @@ use App\Http\Controllers\API\AppointmentsController;
 use App\Models\Appointment;
 use App\Models\Doctor;
 use App\Models\User;
+use App\Http\Controllers\APIVideoConsultController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -32,6 +33,9 @@ Route::middleware('auth:sanctum')->get('appointments', [AppointmentsController::
 
 Route::middleware('auth:sanctum')->get('/profile', [UserController::class, 'profile'])->name('profile');
 Route::middleware('auth:sanctum')->get('/update-profile', [UserController::class, 'updateProfile'])->name('update-profile');
+
+// Video Consult
+Route::middleware('auth:sanctum')->post('book-video-consult', [APIVideoConsultController::class, 'bookVideoConsult'])->name('book-video-consult');
 
 
 Route::post('register', [UserController::class, 'registration'])->name('register');

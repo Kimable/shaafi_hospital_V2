@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Mail\AppointmentConfirmation;
 use App\Models\Appointment;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class AppointmentsController extends Controller
 {
@@ -32,7 +34,12 @@ class AppointmentsController extends Controller
             $appointment->booked_doctor_id = $request->input('booked_doctor_id');
             $appointment->save();
 
-            return response()->json(['successMsg' => 'Your appointment was booked successfully!'], 201);
+            // Send confirmation email
+            $doctor = User::find($appointment->booked_doctor_id);
+            Mail::to($user->email)->send(new AppointmentConfirmation($appointment, $user, $doctor));
+
+
+            return response()->json(['successMsg' => 'Your appointment was booked successfully! Please check your email for deatails.'], 201);
         } catch (\Throwable $th) {
             return response()->json(['errorMsg' => $th->getMessage()], 500);
         }

@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Mail\AppointmentConfirmation;
 use App\Models\Appointment;
 use App\Models\User;
 use App\Models\Doctor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class AppointmentsController extends Controller
 {
@@ -31,6 +33,28 @@ class AppointmentsController extends Controller
         $appointment = new Appointment();
 
         if (!Auth::check()) {
+
+            $emailExists = User::where('email', $request->input('email'))->get();
+            dd($emailExists);
+            if ($emailExists) {
+                $appointment->date = $request->input('date');
+                $appointment->time = $request->input('time');
+                $appointment->gender = $request->input('gender');
+                $appointment->medical_issue = $request->input('medical_issue');
+                $appointment->description = $request->input('description');
+                $appointment->appointment_code = $appointmentCode;
+                $appointment->user_id = $emailExists->id;
+                $appointment->booked_doctor_id = $request->input('booked_doctor_id');
+                $appointment->save();
+
+                // Send confirmation email
+                $doctor = User::find($appointment->booked_doctor_id);
+                Mail::to($emailExists->email)->send(new AppointmentConfirmation($appointment, $emailExists, $doctor));
+
+                return redirect()->route('appointment.post')->with('success', 'Your appointment was booked successfully! Please check your email for deatails.');
+            }
+
+
             $user = new User();
             $user->first_name = $request->input('first_name');
             $user->last_name = $request->input('last_name');
@@ -49,7 +73,11 @@ class AppointmentsController extends Controller
             $appointment->booked_doctor_id = $request->input('booked_doctor_id');
             $appointment->save();
 
-            return redirect()->route('appointment.post')->with('success', 'Congratulations! Your booking was successful!');
+            // Send confirmation email
+            $doctor = User::find($appointment->booked_doctor_id);
+            Mail::to($user->email)->send(new AppointmentConfirmation($appointment, $user, $doctor));
+
+            return redirect()->route('appointment.post')->with('success', 'Your appointment was booked successfully! Please check your email for deatails.');
         }
 
         $user = Auth::user();
@@ -63,7 +91,11 @@ class AppointmentsController extends Controller
         $appointment->booked_doctor_id = $request->input('booked_doctor_id');
         $appointment->save();
 
-        return redirect()->route('appointment.post')->with('success', 'Congratulations! Your booking was successful!');
+        // Send confirmation email
+        $doctor = User::find($appointment->booked_doctor_id);
+        Mail::to($user->email)->send(new AppointmentConfirmation($appointment, $user, $doctor));
+
+        return redirect()->route('appointment.post')->with('success', 'Your appointment was booked successfully! Please check your email for deatails.');
     }
 
     // For Admin
