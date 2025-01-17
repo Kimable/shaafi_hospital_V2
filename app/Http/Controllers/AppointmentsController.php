@@ -139,8 +139,6 @@ class AppointmentsController extends Controller
         $appointments = Appointment::all()->where('booked_doctor_id', $doctor->id);
         $users = User::all();
 
-
-
         return view('doctor/manageAppointments', ['appointments' => $appointments, 'users' => $users]);
     }
 
@@ -185,7 +183,7 @@ class AppointmentsController extends Controller
 
             return view('user/appointments', ['appointments' => $mergedAppointments]);
         } catch (\Throwable $th) {
-            return response()->json(['errorMsg' => $th->getMessage()], 500);
+            return redirect()->back(['error' => $th->getMessage()], 500);
         }
     }
 

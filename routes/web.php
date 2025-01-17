@@ -12,6 +12,7 @@ use App\Http\Controllers\LangController;
 use App\Http\Controllers\PaymentCtrl;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VideoConsultController;
 use App\Models\Appointment;
 use App\Models\Doctor;
 use Illuminate\Support\Facades\Auth;
@@ -109,6 +110,15 @@ Route::get('admin/appointment/{id}', [AppointmentsController::class, 'viewAppoin
 Route::get('doctors/manage-appointments', [AppointmentsController::class, 'manageAppointmentsDoctors'])->name('doctors/manage-appointments');
 Route::get('doctors/appointment/{id}', [AppointmentsController::class, 'viewAppointmentDoctors'])->name('doctors/appointment/{id}');
 
+// Video Consult
+Route::get('video-consult', function () {
+    return view('video-consult');
+});
+
+Route::post('/video-consult', [VideoConsultController::class, 'bookVideoConsultWeb'])->name('video-consult.post');
+
+
+
 // Image Upload
 Route::post('/upload/{id}', [ImageController::class, 'upload'])->name('upload');
 
@@ -135,6 +145,12 @@ Route::post('/search', [SearchController::class, 'search'])->name('search.search
 Route::get('/payment', [PaymentCtrl::class, 'paymentForm'])->name('payment');
 Route::post('/payment', [PaymentCtrl::class, 'pay'])->name('payment.post');
 Route::get('callback', [PaymentCtrl::class, 'callback'])->name('callback');
+
+// Appointment payment
+Route::get('/appointment-payment', function () {
+    return view('appointment-payment');
+})->name('appointment-payment');
+Route::post('/appointment-payment', [PaymentCtrl::class, 'appointmentPayment'])->name('appointment-payment.post');
 
 Route::get('/payment-success', function () {
     return view('user/payment-success');
