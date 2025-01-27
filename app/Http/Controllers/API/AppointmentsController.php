@@ -24,14 +24,25 @@ class AppointmentsController extends Controller
 
             $appointment = new Appointment();
 
+            $doctor_id = $request->input('booked_doctor_id');
+            $gender = $request->input('gender');
+
+            if ($doctor_id == null) {
+                $doctor_id = 0;
+            }
+
+            if (!$gender) {
+                $gender = "Unknown";
+            }
+
             $appointment->date = $request->input('date');
             $appointment->time = $request->input('time');
-            $appointment->gender = $request->input('gender');
+            $appointment->gender = $gender;
             $appointment->medical_issue = $request->input('medical_issue');
             $appointment->description = $request->input('description');
             $appointment->appointment_code = $appointmentCode . $user->id;
             $appointment->user_id = $user->id;
-            $appointment->booked_doctor_id = $request->input('booked_doctor_id');
+            $appointment->booked_doctor_id = $doctor_id;
             $appointment->save();
 
             // Send confirmation email

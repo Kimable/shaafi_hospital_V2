@@ -22,6 +22,8 @@ Route::get('/', function () {
     return view('home')->with('doctors', $doctors);
 });
 
+
+
 Route::get('/development', function () {
     return view('development');
 });
@@ -58,9 +60,14 @@ Route::get('privacy-policy', function () {
     return view('privacy-policy');
 });
 
+Route::get('customer-support', function () {
+    return view('customer-support');
+});
+
 
 // Doctors
 Route::get('/doctors', [DoctorController::class, 'showDoctors'])->name('doctors');
+
 
 Route::get('doctor/{doctorId}', [DoctorController::class, 'showSingleDoctor']);
 
@@ -141,20 +148,20 @@ Route::post('create-password', [UserController::class, 'createPassword'])->name(
 Route::get('/search', [SearchController::class, 'index'])->name('search.index');
 Route::post('/search', [SearchController::class, 'search'])->name('search.search');
 
-// Payment endpoints
+//  Appointment payment endpoints: Waafi Pay
 Route::get('/payment', [PaymentCtrl::class, 'paymentForm'])->name('payment');
-Route::post('/payment', [PaymentCtrl::class, 'pay'])->name('payment.post');
-Route::get('callback', [PaymentCtrl::class, 'callback'])->name('callback');
+Route::post('/payment', [PaymentCtrl::class, 'appointmentPayment'])->name('payment.post');
 
-// Appointment payment
-Route::get('/appointment-payment', function () {
-    return view('appointment-payment');
-})->name('appointment-payment');
-Route::post('/appointment-payment', [PaymentCtrl::class, 'appointmentPayment'])->name('appointment-payment.post');
+// Video Consult payment
+Route::get('/pay-video-consult', [PaymentCtrl::class, 'videoConsultForm'])->name('pay-video-consult');
+Route::post('/pay-video-consult', [PaymentCtrl::class, 'videoConsultPayment'])->name('pay-video-consult.post');
 
 Route::get('/payment-success', function () {
     return view('user/payment-success');
 });
+Route::get('payment-failed', function () {
+    return view('/user/payment-failed');
+})->name('payment-failed');
 
 // Delete Account form
 Route::get('delete-account', function () {

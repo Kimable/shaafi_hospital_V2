@@ -34,12 +34,9 @@ class UserController extends Controller
             $token = $user->createToken('user-token');
 
             return response()->json(['user' => $user, 'token' => $token->plainTextToken], 201);
-
-
         } catch (\Throwable $th) {
             return response()->json(['errorMsg' => $th->getMessage(), "status" => 500], 500);
         }
-
     }
 
     public function login(Request $request)
@@ -76,23 +73,53 @@ class UserController extends Controller
     public function updateProfile(Request $request)
     {
         try {
-            if (!Auth::check()) {
+            $auth_user = Auth::user();
+            if (!$auth_user) {
                 return response()->json(['errorMsg' => 'You must be logged in!', "status" => 401], 401);
             }
 
-            $user = Auth::user();
-            $user = User::find($user->id);
+            $user = User::find($auth_user->id);
+            $updateData = $request->only([
+                'first_name',
+                'middle_name',
+                'last_name',
+                'email',
+                'phone'
+            ]);
 
-            $user->first_name = $request->input('first_name');
-            $user->middle_name = $request->input('middle_name');
-            $user->last_name = $request->input('last_name');
-            $user->email = $request->input('email');
-            $user->phone = $request->input('phone');
-
+            $user->fill(array_filter($updateData));
             $user->save();
 
-            return response()->json(['successMsg' => "Profile successfully updated!", "status" => 200], 200);
+            return response()->json(['successMsg' => "Profile successfully updated!", "status" => 201], 201);
+        } catch (\Throwable $th) {
+            return response()->json(['errorMsg' => $th->getMessage(), "status" => 500], 500);
+        }
+    }
 
+    // Update user image
+    public function updateUserImage(Request $request)
+    {
+
+        $auth_user = Auth::user();
+        if (!$auth_user) {
+            return response()->json(['errorMsg' => 'You must be logged in!', "status" => 401], 401);
+        }
+        try {
+            // Upload image and update url
+            if ($request->hasFile('image')) {
+                $request->validate([
+                    'image' => "required|image|mimes:jpg,png,jpeg|max:2048"
+                ]);
+
+                $imagePath = $request->file('image')->store('uploads', 'public'); // Store image in the "public/images" directory
+                $user = User::find($auth_user->id);
+
+                $user->avatar = '/' . $imagePath;
+                $user->save();
+                return response()->json(['successMsg' => "Profile image successfully updated!", "status" => 201], 201);
+            } else {
+                return response()->json(['errorMsg' => "No image selected.", "status" => 400], 400);
+            }
         } catch (\Throwable $th) {
             return response()->json(['errorMsg' => $th->getMessage(), "status" => 500], 500);
         }

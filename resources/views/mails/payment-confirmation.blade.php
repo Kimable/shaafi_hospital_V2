@@ -33,14 +33,13 @@
                 border-radius: 0 0 5px 5px;
             "
         >
-            <p style="margin: 0 0 15px 0">
+            <p style="margin: 0 0 15px 0; font-weight: 700">
                 Dear {{ $user->first_name }} {{ $user->last_name }},
             </p>
 
             <p style="margin: 0 0 15px 0">
                 Your payment has been received and your appointment booked
-                successfully. An email will be send to you with the appointment
-                link 1 hour before the appointment time.
+                successfully. You can use the transaction ID below as proof of payment.
             </p>
 
             <div
@@ -54,24 +53,8 @@
                     border-radius: 5px;
                 "
             >
-                Transaction Id: {{ $payment->payment_id }}
+                Transaction Id: {{ $payment->transaction_ref }}
             </div>
-
-            <p style="margin: 20px 0 10px 0">
-                <strong>Important Notes:</strong>
-            </p>
-            <ul style="margin: 0 0 20px 0; padding-left: 20px">
-                <li style="margin-bottom: 10px">
-                    Please make sure you have a stable internet connection
-                </li>
-                <li style="margin-bottom: 10px">
-                    Bring any relevant medical records or test results
-                </li>
-                <li style="margin-bottom: 10px">
-                    If you need to reschedule, please contact us at least 24
-                    hours in advance
-                </li>
-            </ul>
 
             <p style="margin: 0 0 15px 0">
                 If you have any questions or need to make changes to your

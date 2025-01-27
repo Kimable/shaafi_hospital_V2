@@ -22,7 +22,7 @@ class PaymentConfirmation extends Mailable
 
   public function build()
   {
-    return $this->subject('Payment Confirmation - ' . $this->payment->appointment_code)
+    return $this->subject('Payment Confirmation - ' . $this->payment->transaction_ref)
       ->view('mails.payment-confirmation');
   }
 }

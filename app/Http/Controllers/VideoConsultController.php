@@ -73,11 +73,17 @@ class VideoConsultController extends Controller
             'medical_issue' => 'required',
         ]);
 
+        $doctor_id = $request->booked_doctor_id;
+
+        if ($doctor_id == null) {
+            $doctor_id = 0;
+        }
+
         $appointment = new VideoConsult();
         $appointment->date = $request->date;
         $appointment->time = $request->time;
         $appointment->medical_issue = $request->medical_issue;
-        //$appointment->booked_doctor_id = $request->booked_doctor_id;
+        $appointment->booked_doctor_id = $doctor_id;
         $appointment->appointment_code = $appointmentCode;
         $appointment->user_id = $user->id;
         $appointment->save();
