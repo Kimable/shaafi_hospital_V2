@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\HealthRecords;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LangController;
 use App\Http\Controllers\PaymentCtrl;
@@ -303,6 +304,12 @@ Route::get('/procedures/immunotherapy', function () {
     return view('procedures/immunotherapy');
 });
 
+// Download Health Record pdf
+Route::get('/health-record/{id}', [HealthRecords::class, 'generateHealthRecordPDF'])->name('health-record');
+
+// Route::get('/no-record', function () {
+//     return view('pdf/no-record');
+// });
 
 Route::fallback(function () {
     return view('404');
