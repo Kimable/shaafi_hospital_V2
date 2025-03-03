@@ -23,14 +23,15 @@ class UserController extends Controller
         // Check if its Admin
         $user = Auth::user();
         if ($user->role == 'admin') {
-            $messages = ContactForm::all();
+            $messages = ContactForm::where('read', false);
             $appointments = Appointment::where('status', 'in_progress');
             return view('admin/dashboard', ['user' => $user, 'messages' => $messages, 'appointments' => $appointments]);
         }
 
         if ($user->role == 'doctor') {
-            $messages = ContactForm::all();
-            $appointments = Appointment::all();
+            $messages = ContactForm::all()->where('read', false);
+            $appointments = Appointment::where('booked_doctor_id', $user->id)->get();
+
 
             return view('doctor/doctorDashboard', ['user' => $user, 'messages' => $messages, 'appointments' => $appointments]);
         }

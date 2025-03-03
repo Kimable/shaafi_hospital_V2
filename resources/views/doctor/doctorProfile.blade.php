@@ -9,16 +9,15 @@
         <div class="col-3"></div>
         <div class="col-md-6">
           @if (session('success'))
-            <p class="text-center fw-bolder p-3 bg-success-subtle text-success rounded-3">
-              {{ session('success') }}</p>
+          <p class="text-center fw-bolder p-3 bg-success-subtle text-success rounded-3">
+            {{ session('success') }}</p>
           @endif
 
           <div class="doctor-profile-header">
             <h2 class="mb-3">Doctor Profile</h2>
-            <img class="doctor-avatar" src="{{ asset('storage/' . $doctor->avatar) }}" alt="{{ $doctor->first_name }}">
+            <img class="doctor-avatar" src="{{ asset($doctor->avatar) }}" alt="{{ $doctor->first_name }}">
 
-            <form class="my-2" action="{{ route('upload', $doctor->id) }}" method="post"
-              enctype="multipart/form-data">
+            <form class="my-2" action="{{ route('upload', $doctor->id) }}" method="post" enctype="multipart/form-data">
               @csrf
               <div class="mb-3">
                 <input class="form-control" type="file" id="formFile" name="image" required>

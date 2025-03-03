@@ -19,19 +19,19 @@
           <div class="col-lg-8">
 
             @if (session('success'))
-              <p class="text-center fw-bolder p-3 bg-success-subtle text-success rounded-3">
-                {{ session('success') }}</p>
+            <p class="text-center fw-bolder p-3 bg-success-subtle text-success rounded-3">
+              {{ session('success') }}</p>
             @endif
 
             @if ($errors->any())
-              <div class="alert alert-danger">
-                <strong>Whoops!</strong> There were some problems with your inputs.<br><br>
-                <ul>
-                  @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                  @endforeach
-                </ul>
-              </div>
+            <div class="alert alert-danger">
+              <strong>Whoops!</strong> There were some problems with your inputs.<br><br>
+              <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+              </ul>
+            </div>
             @endif
 
             <form action="{{ route('appointment.post') }}" method="post">
@@ -40,8 +40,7 @@
 
               <div class="mb-3">
                 <label for="date" class="form-label">Date</label>
-                <input type="date" class="form-control" name="date" id="date" aria-describedby="emailHelp"
-                  required>
+                <input type="date" class="form-control" name="date" id="date" aria-describedby="emailHelp" required>
               </div>
 
               <div class="mb-3">
@@ -76,12 +75,12 @@
               <div class="mb-3">
                 <label for="doctor_email" class="form-label">Preffered Doctor</label>
 
-                <select class="form-select" name="doctor_id" id="doctor_email">
+                <select class="form-select" name="booked_doctor_id" id="doctor_email">
                   <option value="Unspecified">--Choose Doctor--</option>
                   @foreach ($doctors as $doctor)
-                    <option value="{{ $doctor->user->id }}">Dr. {{ $doctor->user->first_name }}
-                      ({{ $doctor->specialty }})
-                    </option>
+                  <option value="{{ $doctor->user->id }}">Dr. {{ $doctor->user->first_name }}
+                    ({{ $doctor->specialty }})
+                  </option>
                   @endforeach
                 </select>
 
@@ -94,7 +93,8 @@
 
               <div class="mb-3">
                 <label for="description" class="form-label">Describe Condition</label>
-                <textarea class="form-control" name="description" id="description" style="height: 100px" required></textarea>
+                <textarea class="form-control" name="description" id="description" style="height: 100px"
+                  required></textarea>
               </div>
 
               <button class="btn btn-primary w-100 py-2 my-3" type="submit">Book Appointement</button>

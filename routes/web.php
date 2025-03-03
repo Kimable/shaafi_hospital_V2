@@ -3,7 +3,6 @@
 use App\Http\Controllers\AppointmentsController;
 use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\AdminController;
@@ -18,12 +17,11 @@ use App\Models\Appointment;
 use App\Models\Doctor;
 use Illuminate\Support\Facades\Auth;
 
+// General Routes
 Route::get('/', function () {
     $doctors = Doctor::with('user')->get();
     return view('home')->with('doctors', $doctors);
 });
-
-
 
 Route::get('/development', function () {
     return view('development');
@@ -65,18 +63,16 @@ Route::get('customer-support', function () {
     return view('customer-support');
 });
 
-
-// Doctors
 Route::get('/doctors', [DoctorController::class, 'showDoctors'])->name('doctors');
+Route::get('doctors/doctor/{doctorId}', [DoctorController::class, 'showSingleDoctor']);
 
-
-Route::get('doctor/{doctorId}', [DoctorController::class, 'showSingleDoctor']);
-
-// Contact Form
+// Contact Form and Messages
 Route::get('contact', [ContactFormController::class, 'showForm'])->name('contact');
 Route::post('contact', [ContactFormController::class, 'submitForm'])->name('contact');
 Route::get('admin/messages', [ContactFormController::class, 'showMessages'])->name('admin/messages');
 Route::get('admin/message/{id}', [ContactFormController::class, 'viewMessage'])->name('admin/message/{id}');
+Route::post('admin/delete-message/{id}', [ContactFormController::class, 'deleteMessage'])->name('admin/delete-message');
+
 
 
 // User Auth Routes
@@ -88,7 +84,7 @@ Route::get('admin/message/{id}', [ContactFormController::class, 'viewMessage'])-
 // Route::post('/talk', [UserController::class, 'talkToDoctor'])->name('talk.post');
 
 // Doctor Auth Routes
-Route::get('doctor-profile', [DoctorController::class, 'doctorProfile'])->name('doctor-profile');
+Route::get('doctor/profile', [DoctorController::class, 'doctorProfile'])->name('doctor/profile');
 Route::get('update-doctor-profile/{id}', [DoctorController::class, 'showUpdateDoctorProfile'])->name('update-doctor-profile/{id}');
 Route::put('update-doctor-profile/{id}', [DoctorController::class, 'updateDoctorProfile'])->name('update-doctor-profile.post');
 
@@ -113,6 +109,8 @@ Route::get('/appointment', [AppointmentsController::class, 'showAppointmentForm'
 Route::get('/appointment/{doctor_id}', [AppointmentsController::class, 'showSpecificDoctorAppointmentForm'])->name('appointment');
 Route::post('/appointment/{doctor_id}', [AppointmentsController::class, 'bookAppointmentWithSpecificDoctor'])->name('appointment.post');
 Route::post('/appointment', [AppointmentsController::class, 'bookAppointment'])->name('appointment.post');
+
+// Admin & Doctor Appointments
 Route::get('admin/manage-appointments', [AppointmentsController::class, 'manageAppointments'])->name('admin/manage-appointments');
 Route::get('admin/appointment/{id}', [AppointmentsController::class, 'viewAppointment'])->name('admin/appointment/{id}');
 Route::get('doctors/manage-appointments', [AppointmentsController::class, 'manageAppointmentsDoctors'])->name('doctors/manage-appointments');

@@ -7,7 +7,8 @@
       <div class="row">
         <div class="col-sm-10"></div>
         <div class="col-sm-2">
-          <a href="/dashboard" id="refreshButton fw-bold" style="font-size: 12px;" class="btn tertiary-color">Refresh</a>
+          <a href="/dashboard" id="refreshButton fw-bold" style="font-size: 12px;"
+            class="btn tertiary-color">Refresh</a>
         </div>
       </div>
     </div>
@@ -37,14 +38,22 @@
       <div class="item">
         <a href="/admin/manage-appointments">
           <p><i class="bi bi-calendar-date"></i></p>
-          <h5>Manage Appointments <span class="message-notifications">{{ $appointments->count() }}</h5>
+          <h5>Manage Appointments
+            @if ($appointments->count() !=0)
+            <span class="message-notifications">{{ $appointments->count() }}
+              @endif
+          </h5>
+
         </a>
       </div>
 
       <div class="item">
         <a href="/admin/messages">
           <p><i class="bi bi-chat"></i></p>
-          <h5>Messages <span class="message-notifications">{{ $messages->count() }}</span>
+          <h5>Messages
+            @if ($messages->count() !=0)
+            <span class="message-notifications">{{ $messages->count()}}</span>
+            @endif
           </h5>
         </a>
       </div>

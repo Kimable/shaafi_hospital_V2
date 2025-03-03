@@ -5,8 +5,8 @@
 
     <div class="container my-5">
       @if (session('success'))
-        <p class="text-center fw-bolder p-3 bg-success-subtle text-success rounded-3">
-          {{ session('success') }}</p>
+      <p class="text-center fw-bolder p-3 bg-success-subtle text-success rounded-3">
+        {{ session('success') }}</p>
       @endif
       <h2 class="mb-3">Manage Doctors</h2>
       <div class="table-responsive">
@@ -23,16 +23,16 @@
           </thead>
 
           @foreach ($doctors as $doctor)
-            <tr>
-              <th>Dr. {{ $doctor->user->first_name }}</th>
-              <td>{{ $doctor->user->email }}</td>
-              <td>{{ $doctor->specialty }}</td>
-              <td><a href="/doctor/{{ $doctor->user->id }}" class="btn btn-tertiary">View</a></td>
-              <td><a href="/admin/edit-doctor/{{ $doctor->user->id }}" class="btn btn-tertiary">Edit</a></td>
-              <td>
-                <a href="/admin/delete-doctor/{{ $doctor->user->id }}" class="btn text-danger">Delete</a>
-              </td>
-            </tr>
+          <tr>
+            <th>Dr. {{ $doctor->user->first_name }}</th>
+            <td>{{ $doctor->user->email }}</td>
+            <td>{{ $doctor->specialty }}</td>
+            <td><a href="/doctors/doctor/{{ $doctor->user->id }}" class="btn btn-tertiary">View</a></td>
+            <td><a href="/admin/edit-doctor/{{ $doctor->user->id }}" class="btn btn-tertiary">Edit</a></td>
+            <td>
+              <a href="/admin/delete-doctor/{{ $doctor->user->id }}" class="btn text-danger">Delete</a>
+            </td>
+          </tr>
           @endforeach
         </table>
       </div>

@@ -25,7 +25,16 @@ class PaymentCtrl extends Controller
 
     public function appointmentPayment(Request $request)
     {
-        $appointmentId = $request->input('appointment_id');
+        $appointmentId = $request->appointment_id;
+        $appointment = Appointment::find($appointmentId);
+
+        if (!$appointment) {
+            return redirect()->back()->with('error', 'Error: such appointment does not exist. Please pay for a valid appointment or make a new appointment and follow the prompt sent to your email');
+        }
+
+        $userId = $appointment->user_id;
+        $user = User::find($userId);
+
 
         $response = Http::post('https://api.waafipay.net/asm', [
             'schemaVersion' => "1.0",
@@ -79,17 +88,31 @@ class PaymentCtrl extends Controller
 
             if ($commitData['errorCode'] != "0") {
                 //dd($commitData);
+                $payment = new Payment();
+                $payment->transaction_ref =  0;
+                $payment->transaction_status = 'failed';
+                $payment->amount = 10;
+                $payment->user_id = $userId;
+                $payment->appointment_id = $appointmentId;
+                $payment->save();
                 return redirect('/payment-failed');
             } else {
                 // Save payment details to the database
 
+
                 if (!$appointmentId) {
+                    // Update payment to paid and save the transaction ID
+                    $payment = new Payment();
+                    $payment->transaction_ref =  0;
+                    $payment->transaction_status = 'failed';
+                    $payment->amount = 10;
+                    $payment->user_id = $userId;
+                    $payment->appointment_id = $appointmentId;
+                    $payment->save();
+
                     return redirect()->back()->with('error', 'Error: Please select a service to pay for');
                 }
-                $appointment = Appointment::find($appointmentId);
-                // send email after successful payment
-                $userId = $appointment->user_id;
-                $user = User::find($userId);
+
 
                 // Update video consult status to paid and save the transaction ID
                 $payment = new Payment();
@@ -106,6 +129,15 @@ class PaymentCtrl extends Controller
             }
         } else {
             //dd($data);
+            $payment = new Payment();
+            $payment->transaction_ref =  0;
+            $payment->transaction_status = 'failed';
+            $payment->amount = 10;
+            $payment->user_id = $userId;
+            $payment->appointment_id = $appointmentId;
+            $payment->save();
+
+
             return redirect('/payment-failed');
         }
     }

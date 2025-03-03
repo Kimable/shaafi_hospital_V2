@@ -7,6 +7,7 @@ use App\Mail\AppointmentConfirmation;
 use App\Models\Appointment;
 use App\Models\User;
 use App\Models\Doctor;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -35,7 +36,7 @@ class AppointmentsController extends Controller
         if (!Auth::check()) {
 
             $emailExists = User::where('email', $request->input('email'))->get();
-            dd($emailExists);
+
             if ($emailExists) {
                 $appointment->date = $request->input('date');
                 $appointment->time = $request->input('time');
@@ -77,7 +78,7 @@ class AppointmentsController extends Controller
             $doctor = User::find($appointment->booked_doctor_id);
             Mail::to($user->email)->send(new AppointmentConfirmation($appointment, $user, $doctor));
 
-            return redirect()->route('appointment.post')->with('success', 'Your appointment was booked successfully! Please check your email for deatails.');
+            return redirect()->route('appointment.post')->with('success', 'Your appointment was booked successfully! Please check your email for details.');
         }
 
         $user = Auth::user();
@@ -95,7 +96,7 @@ class AppointmentsController extends Controller
         $doctor = User::find($appointment->booked_doctor_id);
         Mail::to($user->email)->send(new AppointmentConfirmation($appointment, $user, $doctor));
 
-        return redirect()->route('appointment.post')->with('success', 'Your appointment was booked successfully! Please check your email for deatails.');
+        return redirect()->route('appointment.post')->with('success', 'Your appointment was booked successfully! Please check your email for details.');
     }
 
     // For Admin
@@ -116,15 +117,19 @@ class AppointmentsController extends Controller
             return view('unauthorized');
         }
 
-        $appointment = Appointment::with('user')->find($id);
+        $appointment = Appointment::find($id);
 
         $doctor = User::find($appointment->booked_doctor_id);
+        $payment = Payment::where('appointment_id', $appointment->id)->first();
+        if (!$payment) {
+            $payment = null;
+        }
 
         if (!$doctor || $appointment->booked_doctor_id == null) {
             $doctor = null;
         }
 
-        return view('admin/viewAppointment', ['appointment' => $appointment, 'doctor' => $doctor]);
+        return view('admin/viewAppointment', ['appointment' => $appointment, 'doctor' => $doctor, 'payment' => $payment]);
     }
 
     // For doctors

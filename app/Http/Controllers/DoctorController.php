@@ -32,7 +32,9 @@ class DoctorController extends Controller
         return view("singleDoctor", ['doctor' => $doctor]);
     }
 
-    public function doctorDashboard()
+    // Specific Doc Logic (Authorized)
+
+    public function doctorProfile()
     {
         if (!Auth::check()) {
             return view('auth');
@@ -43,26 +45,8 @@ class DoctorController extends Controller
             return view('doctor/auth');
         }
 
-        if ($doctor) {
-            $appointments = Appointment::all()->where('user_id', $doctor->id);
-            return view('doctor/doctorDashboard', ['doctor' => $doctor, 'appointments' => $appointments]);
-        }
-    }
-
-    public function doctorLogin()
-    {
-        return view('user/login');
-    }
-
-    public function doctorProfile()
-    {
-
-        if (Auth::user()->role !== 'doctor') {
-            return view('doctor/auth');
-        }
-
-        $doctor = Auth::user();
         $doctorInfo = Doctor::where('user_id', $doctor->id)->first();
+
 
         return view('doctor/doctorProfile', ['doctor' => $doctor, 'doctorInfo' => $doctorInfo]);
     }

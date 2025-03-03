@@ -9,19 +9,19 @@
         <div class="col-lg-6">
 
           @if (session('success'))
-            <p class="text-center fw-bolder p-3 bg-success-subtle text-success rounded-3">
-              {{ session('success') }}</p>
+          <p class="text-center fw-bolder p-3 bg-success-subtle text-success rounded-3">
+            {{ session('success') }}</p>
           @endif
 
           @if ($errors->any())
-            <div class="alert alert-danger">
-              <strong>Whoops!</strong> There were some problems with your input.<br><br>
-              <ul>
-                @foreach ($errors->all() as $error)
-                  <li>{{ $error }}</li>
-                @endforeach
-              </ul>
-            </div>
+          <div class="alert alert-danger">
+            <strong>Whoops!</strong> There were some problems with your input.<br><br>
+            <ul>
+              @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
           @endif
 
           <form action="{{ route('register.post') }}" method="post">
@@ -40,14 +40,12 @@
 
             <div class="mb-3">
               <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp"
-                required>
+              <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" required>
             </div>
 
             <div class="mb-3">
               <label for="phone" class="form-label">Phone</label>
-              <input type="tel" class="form-control" name="phone" id="phone" aria-describedby="emailHelp"
-                required>
+              <input type="tel" class="form-control" name="phone" id="phone" aria-describedby="emailHelp" required>
             </div>
 
             <div class="mb-3">
@@ -56,6 +54,10 @@
             </div>
 
             <button type="submit" class="btn btn-primary">Register</button>
+            <small>
+              <p class="mt-3">Already have an account? <a style="color:var(--secondary); font-weight:700"
+                  href="{{ route('login') }}">Login Here</a></p>
+            </small>
           </form>
         </div>
       </div>

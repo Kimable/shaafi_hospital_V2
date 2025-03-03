@@ -24,33 +24,33 @@
     <!-- Show Doctors -->
     <div class="container py-5">
       <div class="not-added">
-        @if (count($doctors) <= 0)
-          <div class="container p-5 d-flex flex-column justify-content-center align-items-center">
-            <h2 class="fw-bolder">Doctors are yet to be Added</h2>
-            <p>Doctors have not been added yet. Please try again later</p>
-          </div>
-        @endif
+        @if (count($doctors) <= 0) <div
+          class="container p-5 d-flex flex-column justify-content-center align-items-center">
+          <h2 class="fw-bolder">Doctors are yet to be Added</h2>
+          <p>Doctors have not been added yet. Please try again later</p>
       </div>
-      <div class="doc-container">
-        <div class="row">
-          @foreach ($doctors as $doctor)
-            <div class="col-md-4">
-              <div class="card doctor">
-                <img src="{{ asset($doctor->user->avatar) }}" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title fw-bold">Dr. {{ $doctor->user->first_name }} {{ $doctor->user->last_name }}</h5>
-                  <p class="card-text">{{ $doctor->specialty }}</p>
-
-                </div>
-                <div class="card-footer text-center">
-                  <a href="/doctor/{{ $doctor->user->id }}" class="btn fw-bold">View Profile</a>
-                </div>
-              </div>
+      @endif
+    </div>
+    <div class="doc-container">
+      <div class="row">
+        @foreach ($doctors as $doctor)
+        <div class="col-md-4">
+          <div class="card doctor">
+            <img src="{{ asset($doctor->user->avatar) }}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">Dr. {{ $doctor->user->first_name }} {{ $doctor->user->last_name }}</h5>
+              <p class="card-text">{{ $doctor->specialty }}</p>
 
             </div>
-          @endforeach
+            <div class="card-footer text-center">
+              <a href="/doctors/doctor/{{ $doctor->user->id }}" class="btn fw-bold">View Profile</a>
+            </div>
+          </div>
+
         </div>
+        @endforeach
       </div>
+    </div>
     </div>
     </div>
 

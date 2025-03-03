@@ -36,7 +36,7 @@ class ContactFormController extends Controller
             return view('unauthorized');
         }
 
-        $messages = ContactForm::all();
+        $messages = ContactForm::all()->where('read', false);
         return view('admin/messages')->with('messages', $messages);
     }
 
@@ -47,6 +47,33 @@ class ContactFormController extends Controller
         }
 
         $message = ContactForm::find($id);
+        if (!$message) {
+            return redirect()->route('admin/messages')->with('error', 'That message does not exist!');
+        }
+        if (!$message->read) {
+            $message->read = true;
+            $message->save();
+        }
         return view('admin/viewMessage')->with('message', $message);
+    }
+
+    public function deleteMessage($id)
+    {
+        if (!Auth::check()) {
+            return view('unauthorized');
+        }
+
+
+
+        $message = ContactForm::find($id);
+
+        if (!$message) {
+            return redirect()->route('admin/messages')->with('error', 'That message does not exist!');
+        }
+
+
+        $message->delete();
+
+        return redirect()->route('admin/messages')->with('success', 'Message deleted successfully!');
     }
 }

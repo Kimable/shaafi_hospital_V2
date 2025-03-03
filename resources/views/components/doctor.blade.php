@@ -65,25 +65,18 @@
 </style>
 
 <div class="container py-2">
-    @if (count($doctors) <= 0)
-    <div
-        class="container p-5 d-flex flex-column justify-content-center align-items-center"
-    >
+    @if (count($doctors) <= 0) <div class="container p-5 d-flex flex-column justify-content-center align-items-center">
         <h2 class="fw-bolder">Doctors are yet to be Added</h2>
         <p>Doctors have not been added yet. Please try again later</p>
-    </div>
-    @endif
+</div>
+@endif
 </div>
 <div class="slider-container">
     <div class="doctor-slider">
         @foreach ($doctors as $doctor)
         <div class="slide-item">
             <div class="card doctor">
-                <img
-                    src="{{ asset($doctor->user->avatar) }}"
-                    class="card-img-top"
-                    alt="..."
-                />
+                <img src="{{ asset($doctor->user->avatar) }}" class="card-img-top" alt="..." />
                 <div class="card-body">
                     <h5 class="card-title fw-bold">
                         Dr. {{ $doctor->user->first_name }}
@@ -92,11 +85,7 @@
                     <p class="card-text">{{ $doctor->specialty }}</p>
                 </div>
                 <div class="card-footer text-center">
-                    <a
-                        href="/doctor/{{ $doctor->user->id }}"
-                        class="btn fw-bold"
-                        >View Profile</a
-                    >
+                    <a href="/doctors/doctor/{{ $doctor->user->id }}" class="btn fw-bold">View Profile</a>
                 </div>
             </div>
         </div>

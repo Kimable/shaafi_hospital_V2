@@ -35,7 +35,8 @@
             <h3>Pay $15 to finish booking your video consult</h3>
             <input type="hidden" name="video_consult_id" value="{{ $video_consult_id }}">
             <div class="mb-3">
-              <label for="phone" class="form-label">Enter the Phone Number you will use to make payments</label>
+              <label for="phone" class="form-label">Enter the Phone Number you will use to make payments (Please Note:
+                Only Somali Phone numbers are currently supported)</label>
               <input type="text" name="phone" class="form-control" id="phone" placeholder="Enter Phone No." required>
             </div>
             {{-- <div class="mb-3">

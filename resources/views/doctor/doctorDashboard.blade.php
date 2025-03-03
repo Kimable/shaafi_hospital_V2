@@ -24,12 +24,17 @@
       <div class="item">
         <a href="/doctors/manage-appointments">
           <p><i class="bi bi-calendar-date"></i></p>
-          <h5>Manage Appointments <span class="message-notifications">{{ count($appointments) }}</h5>
+          <h5>Manage Appointments @if(count($appointments) > 0)
+            <span class="message-notifications">
+              {{ count($appointments) }}
+            </span>
+            @endif
+          </h5>
         </a>
       </div>
 
       <div class="item">
-        <a href="/doctor-profile">
+        <a href="/doctor/profile">
           <p><i class="bi bi-person-circle"></i></p>
           <h5>Profile</h5>
         </a>
