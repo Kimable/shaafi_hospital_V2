@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use PhpParser\Node\Stmt\TryCatch;
 
 class UserController extends Controller
@@ -122,6 +123,43 @@ class UserController extends Controller
             }
         } catch (\Throwable $th) {
             return response()->json(['errorMsg' => $th->getMessage(), "status" => 500], 500);
+        }
+    }
+
+
+    /**
+     * SWAGGER Show the form for admin Registration.
+     */
+    public function registerUserSwagger(Request $request)
+    {
+        $response = Http::post('http://102.214.168.20:803/api/User/RegisterUser', [
+            'userId' => uniqid(),
+            'firstName' => $request->first_name,
+            'lastName' => $request->last_name,
+            'emailId' => $request->email,
+            'password' => $request->password,
+        ]);
+
+        if ($response->successful()) {
+            return response()->json(['message' => 'User registered successfully', 'data' => $response->json()], 200);
+        } else {
+            return response()->json(['error' => $response->body()], $response->status());
+        }
+    }
+
+    function getCalendarEvents(Request $request)
+    {
+        $response = Http::withHeaders([
+            'accessToken' => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYWFmaWhvc3BpdGFsbHRkQGdtYWlsLmNvbSIsInByaW1hcnlzaWQiOiJTaGFhZmlAMjAyMCIsIm5iZiI6MTc0NTgzMTgxMywiZXhwIjoxNzQ1ODM1NDEzLCJpYXQiOjE3NDU4MzE4MTN9.HydONWgYQ6bH2yBt5TLvtzT9JvOOIy5S3RO79fI-reE',
+            'Accept' => 'application/json',
+        ])->get('http://102.214.168.20:803/api/CalendarEvents/GetCalendarEvents', [
+            'patientEmail' => 'kkimani@yahoo.com',
+        ]);
+
+        if ($response->successful()) {
+            return response()->json(['message' => 'User registered successfully', 'data' => $response->json()], 200);
+        } else {
+            return response()->json(['error' => $response->body()], $response->status());
         }
     }
 }

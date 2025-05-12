@@ -174,7 +174,7 @@
                                         </li>
                                         <li>
                                             <a class="dropdown-item" href="/specialties/physiotheraphy">{{
-                                                __("Physiotheraphy")
+                                                __("Physiotherapy")
                                                 }}</a>
                                         </li>
                                         <li>
@@ -221,14 +221,12 @@
                                         </li>
                                         <li>
                                             <a class="dropdown-item" href="/procedures/bone-marrow">{{
-                                                __(
-                                                "Bone Marrow transplant"
-                                                )
+                                                __("Bone Marrow Transplant")
                                                 }}</a>
                                         </li>
                                         <li>
                                             <a class="dropdown-item" href="/procedures/abdominal-surgery">{{
-                                                __("Abdominal Sergery")
+                                                __("Abdominal Surgery")
                                                 }}</a>
                                         </li>
                                         <li>
@@ -343,8 +341,9 @@
 
                                 <!-- General Services -->
                                 <li class="nav-item">
-                                    <a class="dropdown-item" aria-current="page" href="/services">{{ __("General
-                                        Services") }}</a>
+                                    <a class="dropdown-item" aria-current="page" href="/services">
+                                        {{ __("General Services") }}
+                                    </a>
                                 </li>
 
 
@@ -425,11 +424,11 @@
                         </li>
                         <!-- End Get In Touch -->
 
-                        <li class="nav-item" style="cursor: pointer">
+                        {{-- <li class="nav-item" style="cursor: pointer">
                             <a class="nav-link" id="quickIquiry">{{
                                 "Quick Inquiry"
                                 }}</a>
-                        </li>
+                        </li> --}}
 
                         <!-- Languages -->
                         <li class="nav-item dropdown">
@@ -456,9 +455,9 @@
     </nav>
     <!-- Navbar End -->
 
-    @if(!auth()->check())
+    {{-- @if(!auth()->check())
     <x-quick-inquiry-pop-up />
-    @endif
+    @endif --}}
 
     <!-- Content -->
     {{ $slot }}
@@ -534,11 +533,7 @@
                 <div class="col-md-4 offset-md-1 mb-3">
                     <h5>{{ __("Download Our App") }}</h5>
                     <p>
-                        {{
-                        __(
-                        "To easily manage your appointments, download our app."
-                        )
-                        }}
+                        {{ __("To easily manage your appointments, download our app.")}}
                     </p>
                     <div class="d-flex flex-column flex-sm-row w-100 gap-2">
                         <a href="{{

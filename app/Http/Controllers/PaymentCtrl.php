@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Mail\PaymentConfirmation;
 use App\Models\Appointment;
+use App\Models\Doctor;
 use App\Models\Payment;
 use App\Models\User;
 use App\Models\VideoConsult;
@@ -35,6 +36,7 @@ class PaymentCtrl extends Controller
         $userId = $appointment->user_id;
         $user = User::find($userId);
 
+        $doctor = User::find($appointment->booked_doctor_id);
 
         $response = Http::post('https://api.waafipay.net/asm', [
             'schemaVersion' => "1.0",
@@ -98,8 +100,6 @@ class PaymentCtrl extends Controller
                 return redirect('/payment-failed');
             } else {
                 // Save payment details to the database
-
-
                 if (!$appointmentId) {
                     // Update payment to paid and save the transaction ID
                     $payment = new Payment();
@@ -113,7 +113,6 @@ class PaymentCtrl extends Controller
                     return redirect()->back()->with('error', 'Error: Please select a service to pay for');
                 }
 
-
                 // Update video consult status to paid and save the transaction ID
                 $payment = new Payment();
                 $payment->transaction_ref =  $data['params']['transactionId'];
@@ -124,6 +123,56 @@ class PaymentCtrl extends Controller
                 $payment->save();
 
                 Mail::to($user->email)->send(new PaymentConfirmation($payment, $user));
+
+                // Send to API
+                if (!$doctor) {
+                    $APIResponse = Http::withHeaders([
+                        'accessToken' => env('ACCESS_TOKEN_SWAGGER'),
+                        'Accept' => 'application/json',
+                    ])->post('http://102.214.168.20:803/api/CalendarEvents/AddCalendarEvent', [
+                        'appointmentId' => $appointment->appointment_code,
+                        'patientId' => 'shaafiWeb-' . $userId,
+                        'patientName' => $user->first_name . ' ' . $user->last_name,
+                        'patientContact' => $user->phone,
+                        'patientEmail' => $user->email,
+                        'doctorId' => 'Not Specified',
+                        'department' => "Not Specified",
+                        'appointmentType' => "Not Specified",
+                        'reason' => $appointment->medical_issue,
+                        'bookingSource' => "Shaafi Website",
+                        'paymenyType' => "Mobile Money Via Waafi Pay",
+                        'transactionReference' => $data['params']['transactionId'],
+                        'amount' => 10
+
+                    ]);
+
+                    if (!$APIResponse->successful()) {
+                        return response()->json(['error' => $APIResponse->body()], $APIResponse->status());
+                    }
+                } else {
+                    // Get doctor specialty
+                    $doctorSpecialty = Doctor::where($doctor->id == 'user_id')->first();
+                    $department = $doctorSpecialty->specialty;
+
+                    $APIResponse = Http::withHeaders([
+                        'accessToken' => env('ACCESS_TOKEN_SWAGGER'),
+                        'Accept' => 'application/json',
+                    ])->post('http://102.214.168.20:803/api/CalendarEvents/AddCalendarEvent', [
+                        'appointmentId' => $appointment->appointment_code,
+                        'patientId' => 'shaafiWeb-' . $userId,
+                        'patientName' => $user->first_name . ' ' . $user->last_name,
+                        'patientContact' => $user->phone,
+                        'patientEmail' => $user->email,
+                        'doctorId' => 'shaafiWeb-' . $doctor->id,
+                        'department' => $department,
+                        'appointmentType' => "Not Specified",
+                        'reason' => $appointment->medical_issue,
+                        'bookingSource' => "Shaafi Website",
+                        'paymenyType' => "Mobile Money Via Waafi Pay",
+                        'transactionReference' => $data['params']['transactionId'],
+                        'amount' => 10
+                    ]);
+                }
 
                 return view('user/payment-success');
             }

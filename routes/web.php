@@ -15,6 +15,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\VideoConsultController;
 use App\Models\Appointment;
 use App\Models\Doctor;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 // General Routes
@@ -308,6 +309,20 @@ Route::get('/health-record/{id}', [HealthRecords::class, 'generateHealthRecordPD
 // Route::get('/no-record', function () {
 //     return view('pdf/no-record');
 // });
+
+Route::get('register-swagger', function () {
+    return view('/user/registerSwagger');
+})->name('register-swagger');
+Route::post('register-swagger', [UserController::class, 'registerUserSwagger'])->name('register-swagger.post');
+
+Route::get('login-swagger', function () {
+    return view('/user/loginSwagger');
+})->name('register-swagger');
+Route::post('login-swagger', [UserController::class, 'loginSwagger'])->name('login-swagger.post');
+
+
+Route::get('get-calendar-events', [UserController::class, 'getCalendarEvents'])->name('get-calendar-events');
+
 
 Route::fallback(function () {
     return view('404');

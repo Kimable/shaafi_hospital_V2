@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 class UserController extends Controller
 {
@@ -46,6 +47,47 @@ class UserController extends Controller
     {
         return view('user/register');
     }
+
+    /**
+     * SWAGGER Show the form for admin Registration.
+     */
+    public function registerUserSwagger(Request $request)
+    {
+        $response = Http::post('http://102.214.168.20:803/api/User/RegisterUser', [
+            'userId' => uniqid(),
+            'firstName' => $request->first_name,
+            'lastName' => $request->last_name,
+            'emailId' => $request->email,
+            'password' => $request->password,
+        ]);
+
+        if ($response->successful()) {
+            return response()->json(['message' => 'User registered successfully', 'data' => $response->json()], 200);
+        } else {
+            return response()->json(['error' => $response->body()], $response->status());
+        }
+    }
+
+    public function LoginSwagger(Request $request)
+    {
+
+        $credentials = $request->validate([
+            'emailId' => 'required|email',
+            'password' => 'required'
+        ]);
+
+        $response = Http::post('http://102.214.168.20:803/api/User/Login', [
+            'emailId' => $credentials['emailId'],
+            'password' => $credentials['password']
+        ]);
+
+        if ($response->successful()) {
+            return response()->json(['message' => 'Logged in successfully', 'data' => $response->json()], 200);
+        } else {
+            return response()->json(['error' => $response->body()], $response->status());
+        }
+    }
+
 
 
     public function Registration(Request $request)

@@ -30,12 +30,12 @@
           @endif
 
 
-          <form action="{{ route('login.post') }}" method="post">
+          <form action="{{ route('login-swagger.post') }}" method="post">
             @csrf
             <h3>{{__('Login')}}</h3>
             <div class="mb-3">
               <label for="email" class="form-label">{{__('Email')}}</label>
-              <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" required>
+              <input type="email" class="form-control" name="emailId" id="email" aria-describedby="emailHelp" required>
             </div>
             <div class="mb-3">
               <label for="password" class="form-label">{{__('Password')}}</label>

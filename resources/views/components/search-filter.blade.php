@@ -1,37 +1,30 @@
 <div class="search_filter">
     <div class="container py-3">
-        <h4
-            class="text-center text-white"
-            style="font-size: 1.1rem; font-weight: 800; margin: 1rem 0"
-        >
-            Search for a Specific Doctor or Specialty
+        <h4 class="text-center text-white" style="font-size: 1.1rem; font-weight: 800; margin: 1rem 0">
+            {{__("Search for a Specific Doctor or Specialty")}}
         </h4>
         <form action="{{ route('search.search') }}" method="post">
             @csrf
-            <div
-                class="d-flex flex-column flex-lg-row justify-content-center align-items-center"
-            >
+            <div class="d-flex flex-column flex-lg-row justify-content-center align-items-center">
                 <div class="m-1">
                     <select name="specialty" class="form-select" id="specialty">
                         <option value="">
                             --{{ __("Choose Specialty") }}--
                         </option>
                         <option value="Orthopaedic and Spinal Surgery">
-                            Orthopaedic and Spinal Surgery
+                            {{__("Orthopaedic and Spinal Surgery")}}
                         </option>
-                        <option
-                            value="Otorhinolaryngology, Head and Neck Surgery"
-                        >
-                            Otorhinolaryngology, Head and Neck Surgery (ENT)
+                        <option value="Otorhinolaryngology, Head and Neck Surgery">
+                            {{__("Otorhinolaryngology, Head and Neck Surgery (ENT)")}}
                         </option>
                         <option value="Paediatric">
-                            Paediatric and Paediatric Surgery
+                            {{__("Paediatric and Paediatric Surgery")}}
                         </option>
-                        <option value="Plastic Surgery">Plastic Surgery</option>
-                        <option value="Anaesthesiology">Anaesthesiology</option>
-                        <option value="Cardiology">Cardiology</option>
+                        <option value="Plastic Surgery">{{__("Plastic Surgery")}}</option>
+                        <option value="Anaesthesiology">{{__("Anaesthesiology")}}</option>
+                        <option value="Cardiology">{{__("Cardiology")}}</option>
                         <option value="Electrophysiology">
-                            Electrophysiology
+                            {{__("Electrophysiology")}}
                         </option>
                         <option value="Internal Medicine">
                             Internal Medicine
@@ -180,10 +173,7 @@
                 </div>
 
                 <div class="m-1">
-                    <button
-                        class="btn btn-primary search_filter_btn"
-                        type="submit"
-                    >
+                    <button class="btn btn-primary search_filter_btn" type="submit">
                         {{ __("Search") }}
                     </button>
                 </div>

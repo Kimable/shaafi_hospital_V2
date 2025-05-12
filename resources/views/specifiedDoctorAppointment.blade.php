@@ -5,8 +5,8 @@
     <div class="appointment">
       <div class="hero">
         <div class="container text-center">
-          <p class="subtitle">Always here for You</p>
-          <h1 class="fw-bolder">Book an Appointment</h1>
+          <p class="subtitle">{{__('Always here for You')}}</p>
+          <h1 class="fw-bolder">{{__("Book an Appointment")}}</h1>
         </div>
       </div>
     </div>
@@ -19,74 +19,61 @@
           <div class="col-lg-8">
 
             @if (session('success'))
-              <p class="text-center fw-bolder p-3 bg-success-subtle text-success rounded-3">
-                {{ session('success') }}</p>
+            <p class="text-center fw-bolder p-3 bg-success-subtle text-success rounded-3">
+              {{ session('success') }}</p>
             @endif
 
             @if ($errors->any())
-              <div class="alert alert-danger">
-                <strong>Whoops!</strong> There were some problems with your inputs.<br><br>
-                <ul>
-                  @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                  @endforeach
-                </ul>
-              </div>
+            <div class="alert alert-danger">
+              <strong>Whoops!</strong> {{__('There were some problems with your inputs.')}}<br><br>
+              <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+              </ul>
+            </div>
             @endif
 
             <form action="{{ route('appointment.post') }}" method="post">
               @csrf
 
-              <h3>Book an Appointment with Dr. {{ $doctor->first_name }}({{ $doctor->doctor->specialty }})</h3>
+              <h3>{{__("Book an Appointment with Dr.")}} {{ $doctor->first_name }}({{ $doctor->doctor->specialty }})
+              </h3>
 
               <div class="mb-3">
                 <label class="form-label" for="first_name">{{
-                    __("First Name")
-                }}</label>
-                <input
-                    type="text"
-                    class="form-control"
-                    name="first_name"
-                    id="first_name"
-                    required
-                />
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label" for="last_name">{{
-                    __("Last Name")
-                }}</label>
-                <input
-                    type="text"
-                    class="form-control"
-                    name="last_name"
-                    id="last_name"
-                    required
-                />
-            </div>
-
-
-              <div class="mb-3">
-                <label for="email" class="form-label">Email address</label>
-                <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp"
-                  required>
+                  __("First Name")
+                  }}</label>
+                <input type="text" class="form-control" name="first_name" id="first_name" required />
               </div>
 
               <div class="mb-3">
-                <label class="form-label" for="phone">Phone Number</label>
+                <label class="form-label" for="last_name">{{
+                  __("Last Name")
+                  }}</label>
+                <input type="text" class="form-control" name="last_name" id="last_name" required />
+              </div>
+
+
+              <div class="mb-3">
+                <label for="email" class="form-label">{{__('Email address')}}</label>
+                <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" required>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label" for="phone">{{__('Phone Number')}}</label>
                 <input type="text" class="form-control" name="phone" id="phone" required>
               </div>
 
               <div class="mb-3">
-                <label for="date" class="form-label">Date</label>
-                <input type="date" class="form-control" name="date" id="date" aria-describedby="emailHelp"
-                  required>
+                <label for="date" class="form-label">{{__('Date')}}</label>
+                <input type="date" class="form-control" name="date" id="date" aria-describedby="emailHelp" required>
               </div>
 
               <div class="mb-3">
-                <label for="time" class="form-label">Time</label>
+                <label for="time" class="form-label">{{__('Time')}}</label>
                 <select class="form-select" name="time" id="time">
-                  <option value="Unspecified">--Choose Time--</option>
+                  <option value="Unspecified">--{{__("Choose Time")}}--</option>
                   <option value="7am">7:00 a.m</option>
                   <option value="8am">8:00 a.m</option>
                   <option value="9am">9:00 a.m</option>
@@ -103,12 +90,11 @@
               </div>
 
               <div class="mb-3">
-                <label for="gender" class="form-label">Gender</label>
+                <label for="gender" class="form-label">{{__("Gender")}}</label>
                 <select class="form-select" name="gender" id="gender">
-                  <option value="Unknown">--Choose Gender--</option>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                  <option value="Unknown">Prefer not to say</option>
+                  <option value="Unknown">--{{__('Choose Gender')}}--</option>
+                  <option value="Male">{{__('Male')}}</option>
+                  <option value="Female">{{__('Female')}}</option>
                 </select>
               </div>
 
@@ -122,16 +108,17 @@
               </div>
 
               <div class="mb-3">
-                <label class="form-label" for="medical_issue">Medical Concern</label>
+                <label class="form-label" for="medical_issue">{{__('Medical Concern')}}</label>
                 <input type="text" class="form-control" name="medical_issue" id="medical_issue" required>
               </div>
 
               <div class="mb-3">
-                <label for="description" class="form-label">Describe Condition</label>
-                <textarea class="form-control" name="description" id="description" style="height: 100px" required></textarea>
+                <label for="description" class="form-label">{{__('Describe Condition')}}</label>
+                <textarea class="form-control" name="description" id="description" style="height: 100px"
+                  required></textarea>
               </div>
 
-              <button class="btn btn-primary w-100 py-2 my-3" type="submit">Book Appointement</button>
+              <button class="btn btn-primary w-100 py-2 my-3" type="submit">{{__('Book Appointement')}}</button>
             </form>
           </div>
         </div>

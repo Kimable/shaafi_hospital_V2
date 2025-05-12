@@ -66,8 +66,8 @@
 
 <div class="container py-2">
     @if (count($doctors) <= 0) <div class="container p-5 d-flex flex-column justify-content-center align-items-center">
-        <h2 class="fw-bolder">Doctors are yet to be Added</h2>
-        <p>Doctors have not been added yet. Please try again later</p>
+        <h2 class="fw-bolder">{{__("Doctors are yet to be Added")}}</h2>
+        <p>{{__("Doctors have not been added yet. Please try again later")}}</p>
 </div>
 @endif
 </div>
@@ -82,10 +82,10 @@
                         Dr. {{ $doctor->user->first_name }}
                         {{ $doctor->user->last_name }}
                     </h5>
-                    <p class="card-text">{{ $doctor->specialty }}</p>
+                    <p class="card-text">{{ __($doctor->specialty) }}</p>
                 </div>
                 <div class="card-footer text-center">
-                    <a href="/doctors/doctor/{{ $doctor->user->id }}" class="btn fw-bold">View Profile</a>
+                    <a href="/doctors/doctor/{{ $doctor->user->id }}" class="btn fw-bold">{{__("View Profile")}}</a>
                 </div>
             </div>
         </div>

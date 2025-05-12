@@ -10,6 +10,7 @@ use App\Models\Doctor;
 use App\Models\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 
 class AppointmentsController extends Controller
@@ -95,6 +96,8 @@ class AppointmentsController extends Controller
         // Send confirmation email
         $doctor = User::find($appointment->booked_doctor_id);
         Mail::to($user->email)->send(new AppointmentConfirmation($appointment, $user, $doctor));
+
+
 
         return redirect()->route('appointment.post')->with('success', 'Your appointment was booked successfully! Please check your email for details.');
     }
@@ -270,5 +273,30 @@ class AppointmentsController extends Controller
         $appointment->save();
 
         return redirect()->route('appointment.post')->with('success', 'Congratulations! Your booking was successful!');
+    }
+
+    // Swagger API (From Shaafi API)
+
+    function getCalendarEvents(Request $request)
+    {
+        if (!Auth::check()) {
+            return view('unauthorized');
+        }
+        $user = Auth::user();
+        $userEmail = $user->email;
+
+
+        $response = Http::withHeaders([
+            'accessToken' => env("ACCESS_TOKEN_SWAGGER"),
+            'Accept' => 'application/json',
+        ])->get('http://102.214.168.20:803/api/CalendarEvents/GetCalendarEvents', [
+            'patientEmail' => $userEmail,
+        ]);
+
+        if ($response->successful()) {
+            return response()->json(['message' => 'User registered successfully', 'data' => $response->json()], 200);
+        } else {
+            return response()->json(['error' => $response->body()], $response->status());
+        }
     }
 }
