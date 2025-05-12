@@ -150,7 +150,7 @@ class UserController extends Controller
     function getCalendarEvents(Request $request)
     {
         $response = Http::withHeaders([
-            'accessToken' => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNoYWFmaWhvc3BpdGFsbHRkQGdtYWlsLmNvbSIsInByaW1hcnlzaWQiOiJTaGFhZmlAMjAyMCIsIm5iZiI6MTc0NTgzMTgxMywiZXhwIjoxNzQ1ODM1NDEzLCJpYXQiOjE3NDU4MzE4MTN9.HydONWgYQ6bH2yBt5TLvtzT9JvOOIy5S3RO79fI-reE',
+            'accessToken' => env("ACCESS_TOKEN_SWAGGER"),
             'Accept' => 'application/json',
         ])->get('http://102.214.168.20:803/api/CalendarEvents/GetCalendarEvents', [
             'patientEmail' => 'kkimani@yahoo.com',
