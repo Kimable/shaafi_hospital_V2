@@ -443,10 +443,18 @@
                                 @endforeach
                             </ul>
                         </li>
+
+                        @if (!auth()->check())
                         <li class="nav-item">
                             <a style="color: var(--secondary); font-weight:700" class="nav-link" href="/login">{{
                                 __("Login") }}</a>
                         </li>
+                        @else
+                        <li class="nav-item">
+                            <a style="color: var(--secondary); font-weight:700" class="nav-link" href="/logout">{{
+                                __("Logout") }}</a>
+                        </li>
+                        @endif
                     </ul>
                     @endif
                 </div>

@@ -74,6 +74,9 @@ Route::get('admin/messages', [ContactFormController::class, 'showMessages'])->na
 Route::get('admin/message/{id}', [ContactFormController::class, 'viewMessage'])->name('admin/message/{id}');
 Route::post('admin/delete-message/{id}', [ContactFormController::class, 'deleteMessage'])->name('admin/delete-message');
 
+Route::get('contact/doctor', [ContactFormController::class, 'showDoctorForm'])->name('contact/doctor');
+Route::post('contact/doctor', [ContactFormController::class, 'submitForm'])->name('contact/doctor.post');
+
 
 
 // User Auth Routes
@@ -91,9 +94,6 @@ Route::put('update-doctor-profile/{id}', [DoctorController::class, 'updateDoctor
 
 // User Dashboard
 Route::get('/dashboard', [UserController::class, 'showUserDashboard'])->name('dashboard');
-
-
-
 
 // Admin Routes
 // Managing Doctors

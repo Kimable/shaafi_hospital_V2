@@ -12,9 +12,9 @@
       <div class="patient-dashboard text-center">
         <div>
           @if ($user->avatar === null)
-            <img class="user-avatar" src="{{ asset('img/avatar-min.jpg') }}" alt="User avatar">
+          <img class="user-avatar" src="{{ asset('/img/avatar-min.jpg') }}" alt="User avatar">
           @else
-            <img class="user-avatar" src="{{ asset('storage/' . $user->avatar) }}" alt="{{ $user->first_name }}">
+          <img class="user-avatar" src="{{ asset($user->avatar) }}" alt="{{ $user->first_name }}">
           @endif
         </div>
         <div>
@@ -38,7 +38,7 @@
       </div>
 
       <div class="item">
-        <a href="/user/talk">
+        <a href="/contact/doctor">
           <p><i class="bi bi-calendar-date"></i></p>
           <h5>Talk to a Doctor</h5>
         </a>

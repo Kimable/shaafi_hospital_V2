@@ -30,6 +30,7 @@ Route::get('/doctor/{id}', function ($id) {
 });
 
 Route::middleware('auth:sanctum')->post('book-appointment', [AppointmentsController::class, 'bookAppointment'])->name('book-appointment');
+Route::post('book-appointment-api', [AppointmentsController::class, 'bookAppointmentApi'])->name('book-appointment-api');
 Route::middleware('auth:sanctum')->get('appointments', [AppointmentsController::class, 'appointments'])->name('appointments');
 
 

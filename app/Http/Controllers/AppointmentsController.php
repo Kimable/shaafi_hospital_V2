@@ -35,9 +35,7 @@ class AppointmentsController extends Controller
         $appointment = new Appointment();
 
         if (!Auth::check()) {
-
-            $emailExists = User::where('email', $request->input('email'))->get();
-
+            $emailExists = User::where('email', $request->input('email'))->first();
             if ($emailExists) {
                 $appointment->date = $request->input('date');
                 $appointment->time = $request->input('time');

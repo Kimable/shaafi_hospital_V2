@@ -130,20 +130,22 @@ class PaymentCtrl extends Controller
                         'accessToken' => env('ACCESS_TOKEN_SWAGGER'),
                         'Accept' => 'application/json',
                     ])->post('http://102.214.168.20:803/api/CalendarEvents/AddCalendarEvent', [
-                        'appointmentId' => $appointment->appointment_code,
-                        'patientId' => 'shaafiWeb-' . $userId,
+                        'appointmentId' => "",
+                        'patientId' => '',
                         'patientName' => $user->first_name . ' ' . $user->last_name,
                         'patientContact' => $user->phone,
                         'patientEmail' => $user->email,
                         'doctorId' => 'Not Specified',
                         'department' => "Not Specified",
+                        "startTime" => "2025-05-22T16:15:25.590Z",
+                        "endTime" => "2025-05-22T16:30:25.590Z",
                         'appointmentType' => "Not Specified",
                         'reason' => $appointment->medical_issue,
+                        "status" => 1,
                         'bookingSource' => "Shaafi Website",
                         'paymenyType' => "Mobile Money Via Waafi Pay",
                         'transactionReference' => $data['params']['transactionId'],
                         'amount' => 10
-
                     ]);
 
                     if (!$APIResponse->successful()) {
@@ -158,15 +160,18 @@ class PaymentCtrl extends Controller
                         'accessToken' => env('ACCESS_TOKEN_SWAGGER'),
                         'Accept' => 'application/json',
                     ])->post('http://102.214.168.20:803/api/CalendarEvents/AddCalendarEvent', [
-                        'appointmentId' => $appointment->appointment_code,
-                        'patientId' => 'shaafiWeb-' . $userId,
+                        'appointmentId' => "",
+                        'patientId' => '',
                         'patientName' => $user->first_name . ' ' . $user->last_name,
                         'patientContact' => $user->phone,
                         'patientEmail' => $user->email,
                         'doctorId' => 'shaafiWeb-' . $doctor->id,
                         'department' => $department,
+                        "startTime" => "2025-05-22T16:15:25.590Z",
+                        "endTime" => "2025-05-22T16:30:25.590Z",
                         'appointmentType' => "Not Specified",
                         'reason' => $appointment->medical_issue,
+                        "status" => 1,
                         'bookingSource' => "Shaafi Website",
                         'paymenyType' => "Mobile Money Via Waafi Pay",
                         'transactionReference' => $data['params']['transactionId'],
@@ -273,6 +278,34 @@ class PaymentCtrl extends Controller
                 $videoConsult->save();
 
                 Mail::to($user->email)->send(new PaymentConfirmation($videoConsult, $user));
+
+                // Send to Fine System API
+                $APIResponse = Http::withHeaders([
+                    'accessToken' => env('ACCESS_TOKEN_SWAGGER'),
+                    'Accept' => 'application/json',
+                ])->post('http://102.214.168.20:803/api/CalendarEvents/AddCalendarEvent', [
+                    'appointmentId' => $videoConsult->appointment_code,
+                    'patientId' => '',
+                    'patientName' => $user->first_name . ' ' . $user->last_name,
+                    'patientContact' => $user->phone,
+                    'patientEmail' => $user->email,
+                    'doctorId' => 'Not Specified',
+                    'department' => "Not Specified",
+                    "startTime" => "2025-05-22T16:15:25.590Z",
+                    "endTime" => "2025-05-22T16:30:25.590Z",
+                    'appointmentType' => "Video Consult",
+                    'reason' => $videoConsult->medical_issue,
+                    "status" => 1,
+                    'bookingSource' => "Shaafi Website",
+                    'paymenyType' => "Mobile Money Via Waafi Pay",
+                    'transactionReference' => $data['params']['transactionId'],
+                    'amount' => 10
+                ]);
+
+                if (!$APIResponse->successful()) {
+                    return response()->json(['error' => $APIResponse->body()], $APIResponse->status());
+                }
+
                 return view('user/payment-success');
             }
         } else {

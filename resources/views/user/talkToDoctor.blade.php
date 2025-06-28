@@ -17,10 +17,10 @@
         <div class="col-3"></div>
         <div class="col-lg-6">
           @if (session('success'))
-            <p class="text-center fw-bolder p-3 bg-success-subtle text-success rounded-3">
-              {{ session('success') }}</p>
+          <p class="text-center fw-bolder p-3 bg-success-subtle text-success rounded-3">
+            {{ session('success') }}</p>
           @endif
-          <form action="{{ route('user/talk.post') }}" method="post">
+          <form action="{{ route('contact/doctor.post') }}" method="post">
             @csrf
             <h3>Send A Message</h3>
             <div class="mb-3">
@@ -28,7 +28,7 @@
               <select name="doctor" class="form-select" id="doctor">
                 <option value="">--Select Doctor--</option>
                 @foreach ($doctors as $doctor)
-                  <option value="{{ $doctor->id }}">{{ $doctor->first_name }} ({{ $doctor->specialty }})</option>
+                <option value="{{ $doctor->id }}">{{ $doctor->user->first_name }} ({{ $doctor->specialty }})</option>
                 @endforeach
               </select>
             </div>
@@ -38,8 +38,8 @@
             </div>
             <div class="mb-3">
               <label for="message" class="form-label">Message</label>
-              <textarea class="form-control" name="message" placeholder="Leave your message here" id="message" style="height: 100px"
-                required></textarea>
+              <textarea class="form-control" name="message" placeholder="Leave your message here" id="message"
+                style="height: 100px" required></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Send Message</button>
           </form>

@@ -9,13 +9,13 @@
         <div class="col-3"></div>
         <div class="col-md-6">
           @if (session('success'))
-            <p class="text-center fw-bolder p-3 bg-success-subtle text-success rounded-3">
-              {{ session('success') }}</p>
+          <p class="text-center fw-bolder p-3 bg-success-subtle text-success rounded-3">
+            {{ session('success') }}</p>
           @endif
 
           <div class="doctor-profile-header">
             <h2 class="mb-3">Your Profile</h2>
-            <img class="user-avatar" src="{{ asset('uploads/' . $user->avatar) }}" alt="{{ $user->first_name }}">
+            <img class="user-avatar" src="{{ asset($user->avatar) }}" alt="{{ $user->first_name }}">
 
             <form class="mx-2" action="{{ route('upload', $user->id) }}" method="post" enctype="multipart/form-data">
               @csrf
